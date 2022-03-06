@@ -1,10 +1,18 @@
+
 div{
     width: 500px;
+}
+p{
+    border: black 1px solid;
 }
 .a{
    font-family:'Roboto', sans-serif;
     font-size: 25px;
     text-align: left;
+    padding: 10px 40px 30px 20px;
+   margin: 10px 20px 30px 40px;
+    box-sizing: 400px;
+    
 }
 #a{
   text-align: left;
@@ -13,6 +21,7 @@ div{
     font-family:'Smooch Sans', sans-serif; 
     border-style: solid;
     border-color: red;
+    
 }
 #b{
 
@@ -22,10 +31,12 @@ div{
     border-width: 1px;
     font-size: 25px;
     font-family:Roboto Mono', monospace; 
+    
 }
 #c{
     text-align: left;
     text-decoration: none;
     font-size: 25px;
     border: red solid 1px
+    padding:
 }
