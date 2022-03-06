@@ -11,12 +11,14 @@ div{
     text-decoration: underline;
     font-size: 25px;
     font-family:'Smooch Sans', sans-serif; 
+    border-style: solid;
 }
 #b{
 
     text-align: left;
     text-decoration: underline;
-
+    border-style: dashed;
+    border-width: 1px;
     font-size: 25px;
     font-family:Roboto Mono', monospace; 
 }
@@ -24,4 +26,5 @@ div{
     text-align: left;
     text-decoration: none;
     font-size: 25px;
+    border-style: dotted;
 }
