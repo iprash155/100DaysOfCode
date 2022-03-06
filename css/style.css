@@ -27,5 +27,5 @@ div{
     text-align: left;
     text-decoration: none;
     font-size: 25px;
-    border-style: dotted;
+    border: red solid 1px
 }
