@@ -1,10 +1,14 @@
+div{
+    position: relative;
+    border: 1px solid red;
 
+}
 .a{
     border: black 1px solid;
     margin: 5px;
-    position: fixed;
+    position: absolute;
     bottom: 50px;
-    left: 50px;
+    right: 50px;
     
 
 }
