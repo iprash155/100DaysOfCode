@@ -1,3 +1,12 @@
 h1{
+    border:1px solid red;
+    margin: 3px;
     
+    display: inline-block;
+    width: 600px;
+}
+p{
+    border: 1px black dashed;
+    width: 300px;
+    display: block;
 }
