@@ -3,10 +3,15 @@ div{
     border: 1px solid red;
 
 }
+._1{
+    color: red;
+    position: relative;
+    z-index: 1px;
+}
 .a{
-    border: black 1px solid;
-    margin: 5px;
-    position: absolute;
+    border: 1px yellow solid;
+    position: relative;
+    z-index: 3px;
     top: -25px;
     right: 50px;
     
