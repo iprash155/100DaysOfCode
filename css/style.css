@@ -1,8 +1,15 @@
 
-p{
+.a{
     border: black 1px solid;
     margin: 5px;
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    
+
 }
+
+
 #a{
     font-family:'Roboto', sans-serif;
      font-size: 25px;
@@ -22,7 +29,6 @@ p{
     width: 250px;
     
 }
-
 #c{
 
     
