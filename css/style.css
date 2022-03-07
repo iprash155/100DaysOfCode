@@ -5,13 +5,13 @@ div{
 }
 ._1{
     color: red;
+    background-color: aqua;
     position: relative;
-    z-index: 1px;
+    z-index: 5px;
 }
 .a{
-    border: 1px yellow solid;
-    position: relative;
-    z-index: 3px;
+  position: relative;
+    z-index: 1px;
     top: -25px;
     right: 50px;
     
