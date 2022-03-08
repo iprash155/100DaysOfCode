@@ -1,59 +1,46 @@
-div{
+*{
+    box-sizing: border-box;
+}
+.row{
     border: 1px solid red;
     height: 150px;
-
+    font-size: 0px;
 }
-._1{
-    color: red;
-    background-color: aqua;
-    position: relative;
-    z-index: 5px;
-}
-.a{
-  position: relative;
-    z-index: 1px;
-    top: -25px;
-    right: 50px;
-    
-
-}
-
-
-#a{
-    font-family:'Roboto', sans-serif;
-     font-size: 25px;
-     
-     
-     
-     
- }
-#b{
-  
-    text-decoration: underline;
-    font-size: 25px;
-    font-family:'Smooch Sans', sans-serif; 
-    border-style: solid;
-    border-color: red;
-    display: block;
-    width: 250px;
-    
-}
-#c{
-
-    
-    text-decoration: underline;
-    border-style: dashed;
-    border-width: 1px;
-    font-size: 25px;
-    display: block;
-    width: 1050px;
-    
-}
-#d{
-
-    text-decoration: none;
-    font-size: 25px;
-    border: red solid 1px;
-    padding: 2px;
+.col{
+    border: 2px solid black;
+    height: 100%;
+    width: 33.33%;
     display: inline-block;
 }
+.col2{
+    border: 2px solid black;
+    height: 100%;
+    width: 50%;
+    display: inline-block;
+}
+.row2{
+    border: 2px solid red;
+    width: 100%;
+    height: 50%;
+    border-top: 0px;
+}
+.row3{
+    border: 2px solid red;
+    width: 100%;
+    height: 33.33%;
+    border-top: 0px;
+}
+.col3{
+    border: solid black 2px;
+    height: 100%;
+    width: 40%;
+    display: inline-block;
+}
+.col4{
+    border: solid black 2px;
+    height: 100%;
+    width: 60%;
+    display: inline-block;
+}
+
+
