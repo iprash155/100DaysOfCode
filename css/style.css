@@ -63,10 +63,12 @@
     border: black dotted 2px;
     display: flex;
     width: 500px;
+    flex-wrap: nowrap;
     flex-direction: row;
 }
 .flex_container>div{
     border: black solid 2px;
+    
     
 }
 .A{
