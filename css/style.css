@@ -64,7 +64,7 @@
     display: flex;
     width: 700px;
     flex-flow: row nowrap;
-    justify-content:space-evenly;
+    align-items: center;
 
 }
 .flex_container>div{
@@ -77,4 +77,10 @@
 }
 .B{
     flex: 0 1 200px
+}
+.c{
+    flex:0 1 200px; 
+}
+.d{
+    flex:0 1 200px
 }
