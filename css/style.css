@@ -70,14 +70,11 @@
     
 }
 .A{
-    flex-basis: 200px;
-    flex-shrink: 1;
+    flex: 0 0 200px
 }
 .B{
-    flex-basis: 200px;
-    flex-shrink: 1;
+    flex: 0 1 200px
 }
 .C{
-    flex-basis: 200px;
-    flex-shrink: 3;
+    flex: 0 1 200px 
 }
