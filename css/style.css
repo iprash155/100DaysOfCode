@@ -60,17 +60,24 @@
     float: right;
 }
 .flex_container{
-    border: black dotted 1px;
+    border: black dotted 2px;
     display: flex;
     width: 500px;
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
-.strip{
-    border: solid black 1px;
+.flex_container>div{
+    border: black solid 2px;
+    
 }
-.flex_container2{
-    border: black dotted 1px;
-    display: flex;
-    width: 500px;
-    flex-direction: column-reverse;
+.A{
+    flex-basis: 200px;
+    flex-shrink: 1;
+}
+.B{
+    flex-basis: 200px;
+    flex-shrink: 1;
+}
+.C{
+    flex-basis: 200px;
+    flex-shrink: 3;
 }
