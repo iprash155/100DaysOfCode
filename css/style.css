@@ -42,5 +42,22 @@
     width: 60%;
     display: inline-block;
 }
+.container{
+    border: black 1px solid;
+}
+.container>div{
+    border: red solid 1px;
+    width: 200px;
+    height: 25px;
+}
+.a{
+    float: left;
+}
+.b{
+    float: left;
+}
+.c{
+    float: right;
+}
 
 
