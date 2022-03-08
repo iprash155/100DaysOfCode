@@ -10,13 +10,13 @@
     border: 2px solid black;
     height: 100%;
     width: 33.33%;
-    display: inline-block;
+    float: left;
 }
 .col2{
     border: 2px solid black;
     height: 100%;
     width: 50%;
-    display: inline-block;
+    float: left;
 }
 .row2{
     border: 2px solid red;
@@ -34,13 +34,13 @@
     border: solid black 2px;
     height: 100%;
     width: 40%;
-    display: inline-block;
+    float: left;
 }
 .col4{
     border: solid black 2px;
     height: 100%;
     width: 60%;
-    display: inline-block;
+    float: left;
 }
 .container{
     border: black 1px solid;
