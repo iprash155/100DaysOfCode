@@ -1,1 +1,1 @@
-* here i document web development training
+## Hi !! welcome to my #100DaysOfCode repo
