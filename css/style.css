@@ -59,5 +59,12 @@
 .c{
     float: right;
 }
+.flex_container{
+    border: black solid 1px;
+    display: flex;
+}
+.flex_container>div{
+    border: solid black 1px;
+}
 
 
