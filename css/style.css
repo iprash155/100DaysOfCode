@@ -60,11 +60,17 @@
     float: right;
 }
 .flex_container{
-    border: black solid 1px;
+    border: black dotted 1px;
     display: flex;
+    width: 500px;
+    flex-direction: row-reverse;
 }
-.flex_container>div{
+.strip{
     border: solid black 1px;
 }
-
-
+.flex_container2{
+    border: black dotted 1px;
+    display: flex;
+    width: 500px;
+    flex-direction: column-reverse;
+}
