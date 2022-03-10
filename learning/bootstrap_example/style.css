@@ -1,7 +1,8 @@
-.row {
-    border: solid 1px black;
+.row{
+    border: solid black 1px;
     margin-top: 50px;
 }
-[class*="col-"], .col {
-    border: solid 1px red;
+
+[class*="col-"], .col{
+    border: solid  red 1px;
 }
