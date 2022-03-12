@@ -1,0 +1,40 @@
+
+/*                     for banner container                */
+
+.banner-container{
+    background-image: url("http://localhost/100DaysOfCode/PGLife/img/bg.png");
+    background-attachment: fixed;
+    background-color: blue;    
+    height: 475px;
+    width: auto;
+    text-align: center;
+    padding: 160px 15px;
+    
+}
+
+.city-search{
+    padding-right: 25%;
+    padding-left: 25%;
+    
+}
+
+/*          page container      */
+.page-container{
+    height: 400px ;
+    text-align: center;
+    padding: 10% 15px;
+}
+img{
+    width: 50px;
+    height: 50px;
+    justify-content:center;
+}
+
+#city{
+    padding-right: 25;
+    padding-left: 25%;
+}
+.footer{
+    background-color: #373737;
+    
+}
