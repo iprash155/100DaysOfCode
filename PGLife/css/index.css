@@ -22,19 +22,15 @@
 .page-container{
     height: 400px ;
     text-align: center;
-    padding: 10% 15px;
-}
-img{
-    width: 50px;
-    height: 50px;
-    justify-content:center;
+    padding-top: 75px;
 }
 
-#city{
-    padding-right: 25;
-    padding-left: 25%;
-}
-.footer{
-    background-color: #373737;
+.city-image{
+    width: 135px;
+    height: 135px;
     
+}
+.cities{
+    margin-top: 10px;
+    justify-content: center;
 }
