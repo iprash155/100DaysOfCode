@@ -1,0 +1,18 @@
+/*      header          */
+#username{
+    align-self: center;
+    margin-right: 15px;
+    font-weight: 650;
+}
+
+/*  page container  */
+.user-logo{
+    font-size: 115px;
+}
+.user-address{
+    margin-top: 1px;
+}
+.edit-profile{
+    align-self: end;
+    justify-content: center;
+}
