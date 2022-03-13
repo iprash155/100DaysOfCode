@@ -1,4 +1,4 @@
-## Hi👋!!    welcome to my #100DaysOfCode repo
+## Hi!! 👋  welcome to my #100DaysOfCode repo
 
 * Here, i will commit what i learn/work daily.
 * Right now, i am learning web development.
