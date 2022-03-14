@@ -1,4 +1,4 @@
-## Hi !! <img src="https://raw.githubusercontent.com/TheDudeThatCode/TheDudeThatCode/master/Assets/Hi.gif" width="30" height="30" />, welcome to my #100DaysOfCode repo
+## Hi !! <img src="https://raw.githubusercontent.com/TheDudeThatCode/TheDudeThatCode/master/Assets/Hi.gif" alt="hi.gif" width="30" height="30" />, welcome to my #100DaysOfCode repo
 
 * Here, i will commit what i learn/work daily.
 * Right now, i am learning web development.
