@@ -1,0 +1,39 @@
+.personal-detail{
+    background-color:lightgoldenrodyellow;
+    padding: 25px 0px;
+}
+#form{
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    width: 70%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 1rem;
+}
+#title{
+    text-align:center;
+}
+fieldset{
+    border: 1px solid lightgray;
+    margin: 12px;
+}
+div{
+    margin-top: 1em;
+    display: block;
+}
+body{
+    font-family: 'Anaheim', sans-serif;
+    font-size: 1.2em;
+}
+button{
+    margin: 0.5em;
+    color: white;
+    background-color: red;
+    padding: 5px;
+    font-size: 1em;
+    border: none;
+    border-radius: 2px;
+}
+#submit{
+    text-align: center;
+}
