@@ -9,10 +9,17 @@
 .user-logo{
     font-size: 115px;
 }
+
 .user-address{
     margin-top: 1px;
+    margin-left: -14px;
+    line-height: 1px;
 }
 .edit-profile{
     align-self: end;
     justify-content: center;
+    margin-bottom:23px;
+}
+.profile-description{
+    padding-top: 27px;
 }

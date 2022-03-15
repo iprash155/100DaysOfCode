@@ -2,7 +2,7 @@
 /*                     for banner container                */
 
 .banner-container{
-    background-image: url("http://localhost/100DaysOfCode/PGLife/img/bg.png");
+    background-image: url("http://localhost/100DaysOfCode/Projects/PGLife/img/bg.png");
     background-attachment: fixed;
     background-color: blue;    
     height: 475px;
