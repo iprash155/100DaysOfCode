@@ -4,6 +4,7 @@
 .banner-container{
     background-image: url("http://localhost/100DaysOfCode/Projects/PGLife/img/bg.png");
     background-attachment: fixed;
+    box-shadow: inset 0 0 0 2000px #1c1c1c7a;
     background-color: blue;    
     height: 475px;
     width: auto;
