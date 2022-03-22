@@ -1,9 +1,8 @@
 <?php 
-        $num=1;
-        do {
-              echo 2*$num;
-              $num++;
-        } while ($num <= 10);
-     
+        $arr=array('a','b','c','d');
+        foreach($arr as $num){
+              echo $num." ";
+        }
+
 ?>
   
