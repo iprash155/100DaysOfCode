@@ -1,13 +1,9 @@
 <?php 
         $num=1;
-        while($num<=10){
+        do {
+              echo 2*$num;
               $num++;
-               
-               if ($num==5) {
-                     break;
-               }
-               echo $num*2;
-        }
-        
+        } while ($num <= 10);
+     
 ?>
   
