@@ -1,14 +1,10 @@
 <?php
-      $abc="hello world";
-      function a(){
-            global $abc;
-            $abc="hey";
-            echo $abc;
+      
+      function add(&$num){
+            $num++;
+            return $num;
       }
-      function b(){
-            
-            echo $abc;
-      }
-      a();
-      echo $abc;
+      $n=6;
+      add($n);
+      echo $n;
 ?>
