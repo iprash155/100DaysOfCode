@@ -1,6 +1,7 @@
 <?php
       $abc="hello world";
       function a(){
+            global $abc;
             $abc="hey";
             echo $abc;
       }
@@ -9,6 +10,5 @@
             echo $abc;
       }
       a();
-      b();
       echo $abc;
 ?>
