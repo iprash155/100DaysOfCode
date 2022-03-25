@@ -21,7 +21,7 @@
 
 
     // query to insert a row in table
-    $sql="insert into test (name,email,password) values ('$name','$email','password')";
+    $sql="insert into test (name,email,password) values ('$name','$email','$password')";
 
     //executing query
     $result=mysqli_query($conn,$sql)
