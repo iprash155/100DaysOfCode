@@ -7,10 +7,10 @@
     $db_name="test";
 
     // establishing connnection with mysql server
-    $conn=mysqli_connect($db_hostname,$db_username,$db_password,$db_name)
+    $conn=mysqli_connect($db_hostname,$db_username,$db_password,$db_name);
     
     //checking if connection is established
-    if (!conn) {
+    if (!$conn) {
         echo "connection failed: ".mysqli_connect_error();
         exit;
     }
@@ -21,10 +21,10 @@
 
 
     // query to insert a row in table
-    $sql="insert into test (name,email,password) values ('$name','$email','$password')";
+    $sql="insert into users (name,email,password) values ('$name','$email','$password')";
 
     //executing query
-    $result=mysqli_query($conn,$sql)
+    $result=mysqli_query($conn,$sql);
 
     //checking if sql query inserts the data
     if (!$result) {
