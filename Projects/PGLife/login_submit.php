@@ -38,6 +38,4 @@
 
     mysqli_close($conn);
     
-    
-
 ?>
