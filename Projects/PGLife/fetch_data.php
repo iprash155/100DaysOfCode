@@ -14,6 +14,8 @@
         exit;
     }
 
+    $email=$_POST['email'];
+    $password=$_POST['password'];
 
     //fetching data from table
     $sql="select * from users";
