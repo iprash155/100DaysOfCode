@@ -11,7 +11,9 @@
     //checking connection and if not connected displaying error message
     if (!$conn) {
         echo "connection failed ".mysqli_connect_error();
+        exit;
     }
+
 
     //fetching data from table
     $sql="select * from users";
@@ -21,6 +23,7 @@
     //displaying error message in  query execution if there is any
     if (!$result) {
         echo "Error : ".mysqli_error(); 
+        exit;
     }
 
     while ($row=mysqli_fetch_assoc($result)) {
