@@ -1,6 +1,6 @@
 <?php
 
-    session_start();ll
+    session_start();
 
     $db_hostname="127.0.0.1";
     $db_usersname="root";
