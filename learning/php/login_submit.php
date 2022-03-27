@@ -1,7 +1,5 @@
 <?php
 
-    session_start();
-
     $db_hostname="127.0.0.1";
     $db_usersname="root";
     $db_password="";
@@ -33,6 +31,8 @@
     //checking if there is any row as required
     if($row){
         echo "hello ".$row['name'];
+
+        // cookie
         setcookie("user_id",$row['id'],time()+3600);
         setcookie("name",$row['name'],time()+3600);
         ?>
