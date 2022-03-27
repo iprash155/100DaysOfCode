@@ -38,7 +38,7 @@
         //session
         $_SESSION['user_id']=$row['id'];
         $_SESSION['name']=$row['name'];
-        
+           
         // cookie
         // setcookie("user_id",$row['id'],time()+3600);
         // setcookie("name",$row['name'],time()+3600);
