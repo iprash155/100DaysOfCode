@@ -40,9 +40,6 @@
         </nav>
     </div>
 
-    <div id="loading">
-    </div>
-
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb py-2">
             <li class="breadcrumb-item">
@@ -104,7 +101,7 @@
             <div class="property-name">Ganpati Paying Guest</div>
             <div class="property-address">Police Beat, Sainath Complex, Besides, SV Rd, Daulat Nagar, Borivali East, Mumbai - 400066</div>
             <div class="property-gender">
-                <img src="img/unisex.png" />
+                <img src="/my code/ img/unisex.png" />
             </div>
         </div>
         <div class="row no-gutters">

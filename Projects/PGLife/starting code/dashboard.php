@@ -25,7 +25,7 @@ $sql_2 = "SELECT *
             INNER JOIN properties p ON iup.property_id = p.id
             WHERE iup.user_id = $user_id";
 $result_2 = mysqli_query($conn, $sql_2);
-if (!$result_2) {
+if (!$result_2) { 
     echo "Something went wrong!";
     return;
 }
