@@ -36,32 +36,45 @@
         </div>
         
         <!--  page container     -->
-        <div class="page-container ">
-            
-            <h1 >Major Cities</h1>
-            <div class="row cities">
-                <div class="col-md-auto" id="DELHI">
-                    <a href="property_list.php?city="delhi"">
-                        <img class="city-image" src="img/delhi.png" alt="delhi">
+        <div class="page-container">
+            <h1 class="city-heading">
+                Major Cities
+            </h1>
+            <div class="row">
+                <div class="city-card-container col-md">
+                    <a href="property_list.html">
+                        <div class="city-card rounded-circle">
+                            <img src="img/delhi.png" class="city-img" />
+                        </div>
                     </a>
                 </div>
-                <div class="col-md-auto" id="MUMBAI">
-                    <a href="property_list.php?city="mumbai"">
-                        <img class="city-image" src="img/mumbai.png" alt="mumbai">
+
+                <div class="city-card-container col-md">
+                    <a href="property_list.html">
+                        <div class="city-card rounded-circle">
+                            <img src="img/mumbai.png" class="city-img" />
+                        </div>
                     </a>
                 </div>
-                <div class="col-md-auto" id="BENGALURU">
-                    <a href="property_list.php?city="bangalore"">
-                        <img class="city-image" src="img/bangalore.png" alt="bangalore">
+
+                <div class="city-card-container col-md">
+                    <a href="property_list.html">
+                        <div class="city-card rounded-circle">
+                            <img src="img/bangalore.png" class="city-img" />
+                        </div>
                     </a>
                 </div>
-                <div class="col-md-auto" id="HYDERABAD">
-                    <a href="property_list.php?city="hyderabad"">
-                        <img class="city-image" src="img/hyderabad.png" alt="hyderabad">
+
+                <div class="city-card-container col-md">
+                    <a href="property_list.html">
+                        <div class="city-card rounded-circle">
+                            <img src="img/hyderabad.png" class="city-img" />
+                        </div>
                     </a>
                 </div>
             </div>
         </div>
+
 
         <!--    sign-up modal    -->
         <?php

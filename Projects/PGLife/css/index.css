@@ -1,36 +1,45 @@
-
-/*                     for banner container                */
-
-.banner-container{
-    background-image: url("http://localhost/100DaysOfCode/Projects/PGLife/img/bg.png");
+.banner-container {
+    background-image: url("../img/bg.png");
     background-attachment: fixed;
     box-shadow: inset 0 0 0 2000px #1c1c1c7a;
-    background-color: blue;    
-    height: 475px;
-    width: auto;
     text-align: center;
-    padding: 160px 15px;   
+    padding: 160px 15px;
 }
 
-.city-search{
-    padding-right: 25%;
-    padding-left: 25%;
-    
+@media (max-width: 768px) {
+    .banner-container {
+        padding: 100px 15px;
+    }
 }
 
-/*          page container      */
-.page-container{
-    height: 400px ;
+.city-search {
+    max-width: 530px;
+    margin: auto;
+    position: relative;
+}
+
+.city-heading {
     text-align: center;
-    padding-top: 75px;
 }
 
-.city-image{
-    width: 135px;
-    height: 135px;
-    
+.city-card-container {
+    text-align: center;
+    margin-top: 20px;
 }
-.cities{
-    margin-top: 10px;
-    justify-content: center;
+
+.city-card {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    display: inline-block;
+    padding: 20px;
+}
+
+.city-card:focus,
+.city-card:hover {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.city-img {
+    height: 100px;
+    width: 100px;
 }
