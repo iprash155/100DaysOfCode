@@ -31,7 +31,7 @@
     }
     if ($row) {
         $_SESSION['user_id']=$row['id'];
-        $_SESSION['name']=$row['full_name'];
+        $_SESSION['full_name']=$row['full_name'];
         header("location: ../index.php");
     }
     mysqli_close($conn);
