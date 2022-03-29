@@ -3,7 +3,7 @@
     session_start();
 
     //conneting to database
-    require("includes/database_connect.php");
+    require("../includes/database_connect.php");
 
     //storing data filled in form by post method
     $email=$_POST['email'];
