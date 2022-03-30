@@ -1,7 +1,4 @@
 <?php
-    //starting session
-    session_start();
-
     //connecting database
     require ("include/database_connect.php");
 

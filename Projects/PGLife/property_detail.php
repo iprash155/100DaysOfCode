@@ -1,3 +1,11 @@
+<?php   
+    //connecting database
+    require("includes/database_connect.php");
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +24,7 @@
             include "includes/header.php";
         ?>
 
+        <!--breadcrumb-->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb py-2">
                 <li class="breadcrumb-item">
@@ -29,6 +38,7 @@
                 </li>
             </ol>
         </nav>
+
 
         <div id="property-images" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">

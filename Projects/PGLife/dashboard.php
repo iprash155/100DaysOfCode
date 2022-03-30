@@ -1,6 +1,4 @@
 <?php
-    //starting session
-    session_start();
     //connecting database
     require("includes/database_connect.php");
     //checking if user has loged-in or not, if not landing on index.php
