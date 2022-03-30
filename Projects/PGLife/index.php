@@ -75,7 +75,6 @@
             </div>
         </div>
 
-
         <!--    sign-up modal    -->
         <?php
             include "includes/signup_modal.php";
