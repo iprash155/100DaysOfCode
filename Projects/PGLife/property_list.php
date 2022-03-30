@@ -1,3 +1,33 @@
+<?php
+    //starting session
+    session_start();
+
+    //connecting database
+    require ("include/database_connect.php");
+
+    //storing city searched on home search
+    $city_name = $_POST['city'];
+
+    // query to retrive all the properties data located in the $city_name
+    $sql = " SELECT * FROM 
+             cities INNER JOIN properties on
+             properties.city_id = cities.id 
+             WHERE cities.name = "$city_name"
+            ";
+    
+    // retriving and storing data
+    $result = mysqli_query($conn,$sql);
+
+    if (mysqli_error()) {
+        echo "something went wrong ". mysqli_query();
+    }
+
+    //fetching all the rows and storing in $properties as an associative array
+    $properties = mysqli_fetch_all($result,MYSQLI_ASSOC);
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,151 +39,139 @@
     <link href="css/property_list.css" rel="stylesheet" />
 </head>
 
-<body>
+<body>  
+        <!--    header   -->
         <?php
             include "includes/header.php";
         ?>
 
+        <!--    breadcrumb   -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb py-2">
                 <li class="breadcrumb-item">
                     <a href="index.php">Home</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Mumbai
+                    <?php $city_name ?>
                 </li>
             </ol>
         </nav>
 
-        <div class="page-container">
-            <div class="filter-bar row justify-content-around">
-                <div class="col-auto" data-toggle="modal" data-target="#filter-modal">
-                    <img src="img/filter.png" alt="filter" />
-                    <span>Filter</span>
-                </div>
-                <div class="col-auto">
-                    <img src="img/desc.png" alt="sort-desc" />
-                    <span>Highest rent first</span>
-                </div>
-                <div class="col-auto">
-                    <img src="img/asc.png" alt="sort-asc" />
-                    <span>Lowest rent first</span>
-                </div>
-            </div>
+        <!--    page container   -->
+        <?php
+            if (count($properties) > 0) {
+            ?>
+                <div class="page-container">
+                    <div class="filter-bar row justify-content-around">
+                        <div class="col-auto" data-toggle="modal" data-target="#filter-modal">
+                            <img src="img/filter.png" alt="filter" />
+                            <span>Filter</span>
+                        </div>
+                        <div class="col-auto">
+                            <img src="img/desc.png" alt="sort-desc" />
+                            <span>Highest rent first</span>
+                        </div>
+                        <div class="col-auto">
+                            <img src="img/asc.png" alt="sort-asc" />
+                            <span>Lowest rent first</span>
+                        </div>
+                    </div>
+                    <?php 
+                        foreach ($properties as $property) {
+                            $property_image = glob("img/properties/" . $property['id'] . "/*")
+                        }
+                        ?>
+                        <div class="property-card row">
+                            <div class="image-container col-md-4">
+                                <img src=" <?php $property_image[0]?> " />
+                            </div>
+                            <div class="content-container col-md-8">
+                                <?php
+                                    $total_rating = ($property['rating_clean']+$property['rating_food']+$property['rating_safety'])/3;
+                                    $total_rating = round($total_rating,1);
+                                ?>
+                                <div class="row no-gutters justify-content-between">
+                                    <div class="star-container" title="<?= $total_rating ?>">
+                                        <?php
+                                            $rating = $total_rating;
+                                            for ($i=0; $i <5; $i++) { 
 
-            
-            <div class="property-card row">
-                <div class="image-container col-md-4">
-                    <img src="img/properties/1/1d4f0757fdb86d5f.jpg" />
-                </div>
-                <div class="content-container col-md-8">
-                    <div class="row no-gutters justify-content-between">
-                        <div class="star-container" title="4.5">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <div class="interested-container">
-                            <i class="far fa-heart"></i>
-                            <div class="interested-text">3 interested</div>
-                        </div>
-                    </div>
-                    <div class="detail-container">
-                        <div class="property-name">Navkar Paying Guest</div>
-                        <div class="property-address">44, Juhu Scheme, Juhu, Mumbai, Maharashtra 400058</div>
-                        <div class="property-gender">
-                            <img src="img/male.png" />
-                        </div>
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="rent-container col-6">
-                            <div class="rent">Rs 9,500/-</div>
-                            <div class="rent-unit">per month</div>
-                        </div>
-                        <div class="button-container col-6">
-                            <a href="property_detail.php" class="btn btn-primary">View</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                            if ($rating >= i+0.8) {?>
+                                                <i class="fas fa-star"></i>
 
-            <div class="property-card row">
-                <div class="image-container col-md-4">
-                    <img src="img/properties/1/eace7b9114fd6046.jpg" />
-                </div>
-                <div class="content-container col-md-8">
-                    <div class="row no-gutters justify-content-between">
-                        <div class="star-container" title="4.8">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="interested-container">
-                            <i class="far fa-heart"></i>
-                            <div class="interested-text">6 interested</div>
-                        </div>
-                    </div>
-                    <div class="detail-container">
-                        <div class="property-name">Ganpati Paying Guest</div>
-                        <div class="property-address">Police Beat, Sainath Complex, Besides, SV Rd, Daulat Nagar, Borivali East, Mumbai - 400066</div>
-                        <div class="property-gender">
-                            <img src="img/unisex.png" />
-                        </div>
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="rent-container col-6">
-                            <div class="rent">Rs 8,500/-</div>
-                            <div class="rent-unit">per month</div>
-                        </div>
-                        <div class="button-container col-6">
-                            <a href="property_detail.php" class="btn btn-primary">View</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                            <?php } 
+                                            else if ($rating >= i+0.3) {?>
 
-            <div class="property-card row">
-                <div class="image-container col-md-4">
-                    <img src="img/properties/1/46ebbb537aa9fb0a.jpg" />
-                </div>
-                <div class="content-container col-md-8">
-                    <div class="row no-gutters justify-content-between">
-                        <div class="star-container" title="3.5">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="interested-container">
-                            <i class="far fa-heart"></i>
-                            <div class="interested-text">2 interested</div>
-                        </div>
-                    </div>
-                    <div class="detail-container">
-                        <div class="property-name">PG for Girls Borivali West</div>
-                        <div class="property-address">Plot no.258/D4, Gorai no.2, Borivali West, Mumbai, Maharashtra 400092</div>
-                        <div class="property-gender">
-                            <img src="img/female.png" />
-                        </div>
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="rent-container col-6">
-                            <div class="rent">Rs 8,000/-</div>
-                            <div class="rent-unit">per month</div>
-                        </div>
-                        <div class="button-container col-6">
-                            <a href="property_detail.php" class="btn btn-primary">View</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                                <i class="fas fa-star-half-alt"></i>
 
+                                            <?php }
+                                            else { ?>
+                                                <i class="far fa-star"></i>
+                                            <?php
+                                            }                             
+                                            }
+                                        ?>
+                                    </div>
+                                    <div class="interested-container">
+                                        <i class="far fa-heart"></i>
+                                        <div class="interested-text">
+                                        <?php
+                                            //sql query to retrive no of users interested in perticular property for showing no of likes on property card in page container
+                                            $sql_1 = " SELECT user_id from 
+                                                        interested_users_properties iup inner join properties p
+                                                        on iup.user_id = properties.id 
+                                                        where iup.property_id = $property['id'] ";
+                                                        
+                                            //retriving and storing data     
+                                            $result = mysqli_query($conn,$sql);
+
+                                            if (mysqli_error()) {
+                                                echo "something went wrong ". mysqli_query();
+                                            }
+                                            
+                                            $no_of_users = mysqli_num_row($result);
+                                            if ($no_of_users>0) {
+                                                echo $no_of_users?> interested</div>.
+                                            <?php
+                                            }
+                                        ?>
+                                                    
+                                    </div>
+                                </div>
+                                <div class="detail-container">
+                                    <div class="property-name"><?= $property['name']?></div>
+                                    <div class="property-address"><?= $property['address']?></div>
+                                    <div class="property-gender">
+                                        <?php 
+                                            if ($property['gender']=="male") {?>
+                                                <img src="img/male.png" />
+                                            <?php } elseif ($property['gender']=="female"){?>
+                                                <img src="img/female.png" />
+                                            <?php } else { ?>
+                                                <img src="img/unisex.png" />
+                                            <?php
+                                            }
+                                        ?>                               
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="rent-container col-6">
+                                        <div class="rent">Rs <?= number_format($property['rent']) ?>/-</div>
+                                        <div class="rent-unit">per month</div>
+                                    </div>
+                                    <div class="button-container col-6">
+                                        <a href="property_detail.php?property_id=<?= $property['id'] ?>" class="btn btn-primary">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ?>
+                </div>
+            <?php
+            }
+        ?>
+
+        <!--    filter modal      -->
         <div class="modal fade" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="filter-heading" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
