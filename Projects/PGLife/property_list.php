@@ -79,7 +79,6 @@
                     <?php 
                         foreach ($properties as $property) {
                             $property_image = glob("img/properties/" . $property['id'] . "/*")
-                        }
                         ?>
                         <div class="property-card row">
                             <div class="image-container col-md-4">
@@ -165,6 +164,8 @@
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        }
                     ?>
                 </div>
             <?php
