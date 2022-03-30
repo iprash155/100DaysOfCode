@@ -113,6 +113,7 @@
                                         <i class="far fa-heart"></i>
                                         <div class="interested-text">
                                         <?php
+                                            require ("includes/database_connect.php");
                                             //sql query to retrive no of users interested in perticular property for showing no of likes on property card in page container
                                             $sql_1 = " SELECT user_id from 
                                                         interested_users_properties iup inner join properties p
