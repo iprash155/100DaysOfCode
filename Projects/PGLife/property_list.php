@@ -5,7 +5,7 @@
     require "include/database_connect.php";
 
     //storing city searched on home search
-    $city_name = $_POST['city'];
+    $city_name = $_GET['city'];
 
     // query to retrive all the properties data located in the $city_name
     $sql = " SELECT * FROM 

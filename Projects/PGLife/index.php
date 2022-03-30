@@ -25,7 +25,7 @@
         <div class="banner-container">
                 
                 <h2 class="white pb-3">Happiness Per Square Foot</h2>
-                <form id="search-form" action="property_list.php" method="post">
+                <form id="search-form" action="property_list.php" method="get">
                     <div class="input-group city-search">
                         <input type="text" class=" form-control input-city" id="city" name="city" placeholder="enter your city to search for pg ">
                         <div class="input-group-append">

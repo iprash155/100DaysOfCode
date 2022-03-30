@@ -8,6 +8,8 @@
     $phone_no=$_POST['phone'];
     $email=$_POST['email'];
     $password=$_POST['password'];
+    // encrypting password filled by user by sha1 encryption , as it's not ethical to store password by a developper
+    $password=sha1($password);
     $college_name=$_POST['college_name'];
     $gender=$_POST['gender'];
     $full_name=$_POST['full_name'];

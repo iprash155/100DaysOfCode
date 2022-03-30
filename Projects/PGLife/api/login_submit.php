@@ -8,6 +8,9 @@
     //storing data filled in form by post method
     $email=$_POST['email'];
     $password=$_POST['password'];
+    // encrypting password filled by user by sha1 encryption , as it's not ethical to store password by a developper
+    $password=sha1($password);
+
 
     //quety to retrive all the rows matches with same email and password as entered by user
     $sql="SELECT * from users where email="$email" AND password="$password"";

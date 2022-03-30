@@ -2,7 +2,7 @@
     session_start();
     //connecting database
     require("includes/database_connect.php");
-    //checking if user has loged-in or not, if not landing on index.php
+    //checking if user has loged-in or not, if not landing user on index.php
     if (!isset($_SESSION['user_id'])) {
         header("location:index.php");
         die();
@@ -179,25 +179,8 @@
     ?>
 
     <!--    footer  -->
-    <div class="footer">
-        <div class="page-container footer-container">
-            <div class="footer-cities">
-                <div class="footer-city">
-                    <a href="property_list.html">PG in Delhi</a>
-                </div>
-                <div class="footer-city">
-                    <a href="property_list.html">PG in Mumbai</a>
-                </div>
-                <div class="footer-city">
-                    <a href="property_list.html">PG in Bangalore</a>
-                </div>
-                <div class="footer-city">
-                    <a href="property_list.html">PG in Hyderabad</a>
-                </div>
-            </div>
-            <div class="footer-copyright">© 2020 Copyright PG Life </div>
-        </div>
-    </div>
+    <?php
+        include "includes/footer.php";
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
