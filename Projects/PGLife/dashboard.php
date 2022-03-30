@@ -51,12 +51,16 @@
 </head>
 
 <body>
+
+    <!--    header  -->
     <?php
         include "includes/header.php";
     ?>
+
     <div id="loading">
     </div>
 
+    <!--    breadcrumb  -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb py-2">
             <li class="breadcrumb-item">
@@ -68,6 +72,7 @@
         </ol>
     </nav>
 
+    <!--    my-profile page container   -->
     <div class="my-profile page-container">
         <h1>My Profile</h1>
         <div class="row">
@@ -90,9 +95,10 @@
         </div>
     </div>
 
+    <!--    interested properties page container  -->
     <?php
-        if (count($interested_properties > 0)) {
-    ?>
+        if (count($interested_properties) > 0) {
+        ?>
         <div class="my-interested-properties">
             <div class="page-container">
                 <h1>My Interested Properties</h1>
@@ -103,17 +109,17 @@
                 ?>
                     <div class="property-card property-id-<?php $property['id']?> row">
                         <div class="image-container col-md-4">
-                            <img src="<?php $property_image['0'] ?> " />
+                            <img src="<?php $property_image[0] ?> " />
                         </div>
                         <div class="content-container col-md-8">
                             <div class="row no-gutters justify-content-between">
                                 <?php
-                                    $total_ratings = ($property['rating_clean']+$property['rating_food']+$property['rating_safety'])/3;
-                                    $total_ratings = round($total_ratings,1);
+                                    $total_rating = ($property['rating_clean']+$property['rating_food']+$property['rating_safety'])/3;
+                                    $total_rating = round($total_ratings,1);
                                 ?>
                                     <div class="star-container" title="<?php $total_ratings ?>">
                                         <?php
-                                            $rating = $total_ratings;
+                                            $rating = $total_rating;
                                             for ($i=0; $i <5 ; $i++) { 
                                                 if ($rating >= i+0.8) {
                                                 ?>
@@ -168,10 +174,11 @@
                 ?>
             </div>
         </div>
-    <?php }
+        <?php 
+        }   
     ?>
 
-
+    <!--    footer  -->
     <div class="footer">
         <div class="page-container footer-container">
             <div class="footer-cities">
