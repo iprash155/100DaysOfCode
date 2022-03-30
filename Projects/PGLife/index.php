@@ -22,7 +22,7 @@
         <div class="banner-container">
                 
                 <h2 class="white pb-3">Happiness Per Square Foot</h2>
-                <form id="search-form" action="" method="post">
+                <form id="search-form" action="property_list.php" method="post">
                     <div class="input-group city-search">
                         <input type="text" class=" form-control input-city" id="city" name="city" placeholder="enter your city to search for pg ">
                         <div class="input-group-append">
@@ -42,7 +42,7 @@
             </h1>
             <div class="row">
                 <div class="city-card-container col-md">
-                    <a href="property_list.html">
+                    <a href="property_list.php?city="delhi"">
                         <div class="city-card rounded-circle">
                             <img src="img/delhi.png" class="city-img" />
                         </div>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="city-card-container col-md">
-                    <a href="property_list.html">
+                    <a href="property_list.php?city="mumbai"">
                         <div class="city-card rounded-circle">
                             <img src="img/mumbai.png" class="city-img" />
                         </div>
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="city-card-container col-md">
-                    <a href="property_list.html">
+                    <a href="property_list.php?city="bangalore"">
                         <div class="city-card rounded-circle">
                             <img src="img/bangalore.png" class="city-img" />
                         </div>
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="city-card-container col-md">
-                    <a href="property_list.html">
+                    <a href="property_list.php?city="hyderabad"">
                         <div class="city-card rounded-circle">
                             <img src="img/hyderabad.png" class="city-img" />
                         </div>
