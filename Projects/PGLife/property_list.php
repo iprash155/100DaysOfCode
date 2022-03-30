@@ -76,6 +76,7 @@
                     <?php 
                         foreach ($properties as $property) {
                             $property_image = glob("img/properties/" . $property['id'] . "/*")
+                            
                         ?>
                         <div class="property-card row">
                             <div class="image-container col-md-4">
@@ -119,13 +120,13 @@
                                                         where iup.property_id = $property['id'] ";
                                                         
                                             //retriving and storing data     
-                                            $result = mysqli_query($conn,$sql);
+                                            $result_1 = mysqli_query($conn,$sql_1);
 
                                             if (mysqli_error()) {
                                                 echo "something went wrong ". mysqli_query();
                                             }
                                             
-                                            $no_of_users = mysqli_num_row($result);
+                                            $no_of_users = mysqli_num_row($result_1);
                                             if ($no_of_users>0) {
                                                 echo $no_of_users?> interested</div>.
                                             <?php
@@ -156,6 +157,7 @@
                                         <div class="rent-unit">per month</div>
                                     </div>
                                     <div class="button-container col-6">
+                                        <?php $_SESSION['property_id']=$property['id'];?>
                                         <a href="property_detail.php?property_id=<?= $property['id'] ?>" class="btn btn-primary">View</a>
                                     </div>
                                 </div>

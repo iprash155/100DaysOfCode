@@ -162,6 +162,7 @@
                                     <div class="rent-unit">per month</div>
                                 </div>
                                 <div class="button-container col-6">
+                                <?php $_SESSION['property_id']=$property['id'];?>
                                     <a href="property_detail.php?property_id=<?= $property['id'] ?>" class="btn btn-primary">View</a>
                                 </div>
                             </div>
