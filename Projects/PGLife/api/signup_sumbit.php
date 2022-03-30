@@ -1,6 +1,4 @@
 <?php
-    //starting session
-    session_start();
     
     //connecting database
     require("includes/database_connect.php");
@@ -15,7 +13,7 @@
     $full_name=$_POST['full_name'];
 
     //query to retrive all the emails
-    $sql="select * from users where email="$email"";
+    $sql="SELECT * from users where email='$email'";
 
     //retrving all the emails
     $result=mysqli_query($conn,$sql);   

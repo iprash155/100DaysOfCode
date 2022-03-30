@@ -1,6 +1,8 @@
 <?php
+    //starting session
+    session_start();
     //connecting database
-    require ("include/database_connect.php");
+    require "include/database_connect.php";
 
     //storing city searched on home search
     $city_name = $_POST['city'];
@@ -29,7 +31,7 @@
 <html lang="en">
 
 <head>
-    <title>Best PG's in Mumbai | PG Life</title>
+    <title>Best PG's in <?php echo $city_name;?> | PG Life</title>
     <?php
         include "includes/head_link.php";
     ?>
@@ -49,7 +51,7 @@
                     <a href="index.php">Home</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    <?php $city_name ?>
+                    <?php echo $city_name; ?>
                 </li>
             </ol>
         </nav>
@@ -75,29 +77,29 @@
                     </div>
                     <?php 
                         foreach ($properties as $property) {
-                            $property_image = glob("img/properties/" . $property['id'] . "/*")
+                            $property_image = glob("img/properties/" . $property['id'] . "/*");
                             
                         ?>
                         <div class="property-card row">
                             <div class="image-container col-md-4">
                                 <img src=" <?php $property_image[0]?> " />
                             </div>
-                            <div class="content-container col-md-8">
+                            <div class="content-container col-md-8">                               
+                                <div class="row no-gutters justify-content-between">
                                 <?php
                                     $total_rating = ($property['rating_clean']+$property['rating_food']+$property['rating_safety'])/3;
                                     $total_rating = round($total_rating,1);
                                 ?>
-                                <div class="row no-gutters justify-content-between">
                                     <div class="star-container" title="<?= $total_rating ?>">
                                         <?php
                                             $rating = $total_rating;
                                             for ($i=0; $i <5; $i++) { 
 
-                                            if ($rating >= i+0.8) {?>
+                                            if ($rating >= $i+0.8) {?>
                                                 <i class="fas fa-star"></i>
 
                                             <?php } 
-                                            else if ($rating >= i+0.3) {?>
+                                            else if ($rating >= $i+0.3) {?>
 
                                                 <i class="fas fa-star-half-alt"></i>
 
@@ -109,11 +111,11 @@
                                             }
                                         ?>
                                     </div>
-                                    <div class="interested-container">
-                                        <i class="far fa-heart"></i>
+                                    <div class="interested-container">                      
+                                    <i class="far fa-heart"></i>
                                         <div class="interested-text">
                                         <?php
-                                            require ("includes/database_connect.php");
+                                            require "includes/database_connect.php";
                                             //sql query to retrive no of users interested in perticular property for showing no of likes on property card in page container
                                             $sql_1 = " SELECT user_id from 
                                                         interested_users_properties iup inner join properties p
@@ -170,6 +172,13 @@
                 </div>
             <?php
             }
+            if (count($properties) == 0) {
+                ?>
+                    <div class="no-property-container">
+                        <p>No PG to list</p>
+                    </div>
+                <?php
+            }
         ?>
 
         <!--    filter modal      -->
@@ -224,8 +233,7 @@
             include "includes/footer.php";
         ?>
 
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 
 </body>
 

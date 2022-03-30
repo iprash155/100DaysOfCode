@@ -1,4 +1,5 @@
 <?php
+    session_start();
     //connecting database
     require("includes/database_connect.php");
     //checking if user has loged-in or not, if not landing on index.php
@@ -30,6 +31,10 @@
 
     //storing and retriving rows  
     $result_2 = mysqli_query($conn,$sql_2);
+    if (!$result_2) {
+        echo "somthing went wrong";
+        return;
+    }
     //fetching all resulted rows in $interersted_properties associative array
     $interested_properties = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
 
@@ -55,9 +60,6 @@
         include "includes/header.php";
     ?>
 
-    <div id="loading">
-    </div>
-
     <!--    breadcrumb  -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb py-2">
@@ -80,10 +82,10 @@
             <div class="col-md-9">
                 <div class="row no-gutters justify-content-between align-items-end">
                     <div class="profile">
-                        <div class="name"><?php $user['full_name']; ?></div>
-                        <div class="email"><?php $user['email']; ?></div>
-                        <div class="phone"><?php $user['phone']; ?></div>
-                        <div class="college"><?php $user['college_name']; ?></div>
+                        <div class="name"><?= $user['full_name']; ?></div>
+                        <div class="email"><?= $user['email']; ?></div>
+                        <div class="phone"><?= $user['phone']; ?></div>
+                        <div class="college"><?= $user['college_name']; ?></div>
                     </div>
                     <div class="edit">
                         <div class="edit-profile">Edit Profile</div>
@@ -105,9 +107,9 @@
                 foreach ($interested_properties as $property) {
                     $property_image = glob("img/properties/". $property['id'] ."/*");
                 ?>
-                    <div class="property-card property-id-<?php $property['id']?> row">
+                    <div class="property-card property-id-<?= $property['id']?> row">
                         <div class="image-container col-md-4">
-                            <img src="<?php $property_image[0] ?> " />
+                            <img src="<?= $property_image[0] ?> " />
                         </div>
                         <div class="content-container col-md-8">
                             <div class="row no-gutters justify-content-between">
@@ -119,11 +121,11 @@
                                         <?php
                                             $rating = $total_rating;
                                             for ($i=0; $i <5 ; $i++) { 
-                                                if ($rating >= i+0.8) {
+                                                if ($rating >= $i+0.8) {
                                                 ?>
                                                     <i class="fas fa-star"></i>
                                                 <?php
-                                                } elseif ($rating >= i+0.3) {
+                                                } elseif ($rating >= $i+0.3) {
                                                 ?>
                                                     <i class="fas fa-star-half-alt"></i>
                                                 <?php
@@ -136,7 +138,7 @@
                                             ?>
                                     </div>
                                     <div class="interested-container">
-                                        <i class="is-interested-image fas fa-heart" property_id="<?php $property['id']?>"></i>
+                                        <i class="is-interested-image fas fa-heart" property_id="<?= $property['id']?>"></i>
                                     </div>
                             </div>
                             <div class="detail-container">
@@ -162,7 +164,6 @@
                                     <div class="rent-unit">per month</div>
                                 </div>
                                 <div class="button-container col-6">
-                                <?php $_SESSION['property_id']=$property['id'];?>
                                     <a href="property_detail.php?property_id=<?= $property['id'] ?>" class="btn btn-primary">View</a>
                                 </div>
                             </div>

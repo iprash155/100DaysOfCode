@@ -3,7 +3,7 @@
     session_start();
 
     //conneting to database
-    require("includes/database_connect.php");
+    require("../includes/database_connect.php");
 
     //storing data filled in form by post method
     $email=$_POST['email'];
@@ -25,13 +25,14 @@
     $row=mysqli_fetch_assoc($result);
 
     //checking if user has signed-up
-    if (!$row) {
+    if (count(mysqli_num_row($row)=0) {
         echo "This email-id is not registered with us";
         exit;
     }
     if ($row) {
         $_SESSION['user_id']=$row['id'];
         $_SESSION['full_name']=$row['full_name'];
+        $_SESSION['email'] = $row['email'];
         header("location: ../index.php");
     }
     mysqli_close($conn);

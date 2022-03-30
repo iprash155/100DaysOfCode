@@ -1,9 +1,10 @@
 <?php   
+    session_start();
     //connecting database
     require("includes/database_connect.php");
 
     //storing property id
-    $property_id = $_SESSION['property_id'];
+    $property_id = $_GET["property_id"];
 
     // retriving details from properties table for particular id
     $sql = " SELECT * from properties where id = $property_id";
@@ -11,10 +12,14 @@
     $result = mysqli_query($conn,$sql);
     if (!$result) {
         echo "something went wrong";
+        return;
     }
     //fetching and storing whole row in $property as an associative array
     $property = mysqli_fetch_assoc($result);
-
+    if (!$property) {
+        echo "Something went wrong!";
+        return;
+    }
     //query to retrive all testimonials for $property_id
     $sql_2 = "SELECT * from testimonials inner join properties on testimonials.property_id = properties.id where properties.id = $property_id";
     $result_2 = mysqli_query($conn,$sql_2);
@@ -22,7 +27,10 @@
         echo "something went wrong";
     }
     //fetchig all the testimonial rows in $testimonial as an associative array
-    $testimonial = mysqli_fetch_all($result_2,MYSQLI_ASSOC);
+    $testimonials = mysqli_fetch_all($result_2,MYSQLI_ASSOC);
+
+
+    //////////////   amenities to be added ///////////////////////////
 
 ?>
 
@@ -30,7 +38,7 @@
 <html lang="en">
 
 <head>
-    <title>Ganpati Paying Guest | PG Life</title>
+    <title><?= $property['name']; ?>  | PG Life</title>
     <?php
             include "includes/head_link.php";
     ?>
@@ -65,10 +73,10 @@
                         } 
                         $city = mysqli_fetch_assoc($result_1);
                     ?>
-                    <a href="property_list.php?city="<?php $city['name']?>""><?php $city['name']?></a>
+                    <a href="property_list.php?city=<?= $city['name'];?>"><?= $city['name']?></a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    <?php $property['name'];?>
+                    <?= $property['name'];?>
                 </li>
             </ol>
         </nav>
@@ -105,15 +113,15 @@
             <div class="row no-gutters justify-content-between">
                 <?php $total_rating = ($property['rating_food']+$property['rating_food']+$property['rating_food'])/3;
                         $total_rating = round($total_rating,1);?>
-                <div class="star-container" title="$total_rating">
+                <div class="star-container" title="<?=$total_rating?>">
                     <?php
                         $rating = $total_rating;
                         for ($i=0; $i <5 ; $i++) { 
-                            if ($rating >= i+0.8) {
+                            if ($rating >= $i+0.8) {
                             ?>
                                 <i class="fas fa-star"></i>
                             <?php
-                            } elseif ($rating >= i+0.3) {
+                            } elseif ($rating >= $i+0.3) {
                             ?>
                                 <i class="fas fa-star-half-alt"></i>
                             <?php
@@ -130,7 +138,7 @@
                     <div class="interested-text">
                         <span class="interested-user-count">
                             <?php
-                                require ("includes/database_connect.php");
+                                require "includes/database_connect.php";
                                 //sql query to retrive no of users interested in perticular property for showing no of likes on property card in page container
                                 $sql_1 = " SELECT user_id from 
                                             interested_users_properties iup inner join properties p
@@ -146,14 +154,14 @@
                                 
                                 $no_of_users = mysqli_num_row($result_1);
                                 if ($no_of_users>0) {
-                                    echo $no_of_users?>
+                                    echo $no_of_users;?>
                         </span> interested
                     </div>
                 </div>
             </div>
             <div class="detail-container">
-                <div class="property-name"><?php $property['name'] ?></div>
-                <div class="property-address"><?php $property['address'] ?></div>
+                <div class="property-name"><?= $property['name'] ?></div>
+                <div class="property-address"><?= $property['address'] ?></div>
                 <div class="property-gender">
                 <?php 
                     if ($property['gender']=="male") {?>
@@ -169,7 +177,7 @@
             </div>
             <div class="row no-gutters">
                 <div class="rent-container col-6">
-                    <div class="rent">Rs <?php $property['rent'] ?>/-</div>
+                    <div class="rent">Rs <?= number_format($property['rent'])?>/-</div>
                     <div class="rent-unit">per month</div>
                 </div>
                 <div class="button-container col-6">
@@ -243,7 +251,7 @@
 
         <div class="property-about page-container">
             <h1>About the Property</h1>
-            <p><?php  $property['description'] ?></p>
+            <p><?=  $property['description'] ?></p>
         </div>
 
         <div class="property-rating">
@@ -256,7 +264,7 @@
                                 <i class="rating-criteria-icon fas fa-broom"></i>
                                 <span class="rating-criteria-text">Cleanliness</span>
                             </div>
-                            <div class="rating-criteria-star-container col-6" title="<?php $property['rating_clean']?>">
+                            <div class="rating-criteria-star-container col-6" title="<?= $property['rating_clean']?>">
                                 <?php
                                     $rating = $property['rating_clean'];
                                     for ($i=0; $i <5; $i++) { 
@@ -284,7 +292,7 @@
                                 <i class="rating-criteria-icon fas fa-utensils"></i>
                                 <span class="rating-criteria-text">Food Quality</span>
                             </div>
-                            <div class="rating-criteria-star-container col-6" title="<?php $property['rating_food']?>">
+                            <div class="rating-criteria-star-container col-6" title="<?= $property['rating_food']?>">
                                 <?php
                                         $rating = $property['rating_food'];
                                         for ($i=0; $i <5; $i++) { 
@@ -312,7 +320,7 @@
                                 <i class="rating-criteria-icon fa fa-lock"></i>
                                 <span class="rating-criteria-text">Safety</span>
                             </div>
-                            <div class="rating-criteria-star-container col-6" title="<?php $property['rating_safety']?>">
+                            <div class="rating-criteria-star-container col-6" title="<?= $property['rating_safety']?>">
                                 <?php
                                         $rating = $property['rating_safety'];
                                         for ($i=0; $i <5; $i++) { 
@@ -342,7 +350,7 @@
                                 $total_rating = ($property['rating_clean']+$property['rating_food']+$property['rating_safety'])/3;
                                 $total_rating = round($total_rating,1);
                             ?>
-                            <div class="total-rating"><?php $total_rating ?></div>
+                            <div class="total-rating"><?= $total_rating ?></div>
                             <div class="rating-circle-star-container">
                                 <?php
                                     $rating = $total_rating;
@@ -372,7 +380,9 @@
 
         <div class="property-testimonials page-container">
             <h1>What people say</h1>
-            <div class="testimonial-block">
+            <?php
+                foreach ($testimonials as $testimonial) {?>
+                <div class="testimonial-block">
                 <div class="testimonial-image-container">
                     <img class="testimonial-img" src="img/man.png">
                 </div>
@@ -381,18 +391,12 @@
                     <p><?php $testimonial['description']?></p>
                 </div>
                 <div class="testimonial-name">- <?php $testimonial['user_name']?></div>
-            </div>
-            <div class="testimonial-block">
-                <div class="testimonial-image-container">
-                    <img class="testimonial-img" src="img/man.png">
-                </div>
-                <div class="testimonial-text">
-                    <i class="fa fa-quote-left" aria-hidden="true"></i>
-                    <p><?php $testimonial['description']?></p>
-                </div>
-                <div class="testimonial-name">- <?php $testimonial['user_name']?></div>
-            </div>
+                  <?php 
+                }
+            ?>
         </div>
+            
+        
 
         <!--    sign-up modal    -->
         <?php
@@ -408,10 +412,7 @@
         <?php
             include "includes/footer.php";
         ?>
-    
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    
+
 </body>
 
 </html>

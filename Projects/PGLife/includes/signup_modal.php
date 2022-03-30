@@ -75,7 +75,7 @@
     
                     <div class="modal-footer">
                         <span>Already have an account?
-                            <a href="includes/login_modal.php" data-dismiss="modal" data-toggle="modal" data-target="#login-modal">Login</a>
+                            <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#login-modal">Login</a>
                         </span>
                     </div>
                 </div>

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +45,7 @@
             </h1>
             <div class="row">
                 <div class="city-card-container col-md">
-                    <a href="property_list.php?city="delhi"">
+                    <a href="property_list.php?city=Delhi">
                         <div class="city-card rounded-circle">
                             <img src="img/delhi.png" class="city-img" />
                         </div>
@@ -50,7 +53,7 @@
                 </div>
 
                 <div class="city-card-container col-md">
-                    <a href="property_list.php?city="mumbai"">
+                    <a href="property_list.php?city=Mumbai">
                         <div class="city-card rounded-circle">
                             <img src="img/mumbai.png" class="city-img" />
                         </div>
@@ -58,7 +61,7 @@
                 </div>
 
                 <div class="city-card-container col-md">
-                    <a href="property_list.php?city="bangalore"">
+                    <a href="property_list.php?city=Bangalore">
                         <div class="city-card rounded-circle">
                             <img src="img/bangalore.png" class="city-img" />
                         </div>
@@ -66,7 +69,7 @@
                 </div>
 
                 <div class="city-card-container col-md">
-                    <a href="property_list.php?city="hyderabad"">
+                    <a href="property_list.php?city=Hyderabad">
                         <div class="city-card rounded-circle">
                             <img src="img/hyderabad.png" class="city-img" />
                         </div>
@@ -90,7 +93,5 @@
             include "includes/footer.php";
         ?>
 
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
     </body>
 </html>
