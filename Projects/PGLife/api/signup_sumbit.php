@@ -3,7 +3,7 @@
     session_start();
     
     //connecting database
-    require("../includes/database_connect.php");
+    require("includes/database_connect.php");
 
     //storing data filled in form by post method
     $full_name=$_POST['full_name'];
@@ -14,7 +14,7 @@
     $gender=$_POST['gender'];
     $full_name=$_POST['full_name'];
 
-    //quety to retrive all the emails
+    //query to retrive all the emails
     $sql="select * from users where email="$email"";
 
     //retrving all the emails

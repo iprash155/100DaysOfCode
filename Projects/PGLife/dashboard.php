@@ -2,7 +2,7 @@
     //starting session
     session_start();
     //connecting database
-    require("../includes/database_connect.php");
+    require("includes/database_connect.php");
     //checking if user has loged-in or not, if not landing on index.php
     if (!isset($_SESSION['user_id'])) {
         header("location:index.php");
@@ -98,7 +98,7 @@
                 <h1>My Interested Properties</h1>
 
                 <?php
-                foreach ($interested_properties as property) {
+                foreach ($interested_properties as $property) {
                     $property_image = glob("img/properties/". $property['id'] ."/*");
                 ?>
                     <div class="property-card property-id-<?php $property['id']?> row">
