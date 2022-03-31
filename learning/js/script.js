@@ -1,3 +1,5 @@
-abc =5;
-document.write(abc);
-// initialization isn't needed in var defined variables
+"use strict"
+let a = 5;
+document.write(typeof a);
+a = "hi prashant";
+document.write(typeof a);
