@@ -1,7 +1,33 @@
 "use strict";
-let a = 9 ;
-if (a%2==0) {
-    document.write("it is even no");
-} else {
-    document.write("it is odd no");
+let a =10;
+let b = 2;
+let operator = '**';
+switch (operator) {
+    case '+':
+        document.write(a+b);
+        break;
+    
+    case '-':
+        document.write(a-b);
+        break;
+
+    case '*':
+        document.write(a*b);
+        break;
+
+    case '/':
+        document.write(a/b);
+        break;
+    
+    case '%':
+        document.write(a%b);
+        break;
+
+    case '**':
+        document.write(a**b);
+        break;
+
+    default:
+        document.write("the operation is not valid");
+        break;
 }
