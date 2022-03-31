@@ -1,6 +1,5 @@
-"use strict ";
-let arr = [2,4,6,7];
-
-for (let element of arr) {
-    document.write(element);
-}
+"use strict";
+let mul = p => p*5;
+let p =10;
+mul(p);
+document.write(p);
