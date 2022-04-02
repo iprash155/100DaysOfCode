@@ -1,5 +1,12 @@
 "use strict";
-let mul = p => p*5;
-let p =10;
-mul(p);
-document.write(p);
+let dog = {
+    breed:'golder retriever',
+    height : '4 ft',
+    age : 2,
+    display : function(){
+        document.write(this.breed+" "+this.height+" "+this.age);
+        exit;
+    }
+};
+
+document.write(dog.display());
