@@ -1,20 +1,22 @@
 "use strict";
 
 //function construction
-function Dog(breed,height,weight) {
-    this.breed=breed;
-    this.height=height;
-    this.weight= weight;
-    this.display=function(){
-        this.breed+" "+this.height;
-    };
-}
+class person {
+    constructor(person_name, person_age) {
+        this.name = person_name;
+        this.age = person_age;
+
+    }
+    display(){
+        document.write(this.name+" is of age "+this.age);
+    }
+};
 
 // creating objects using new keyword
 
-let dog1 = new Dog ('golder retriever','3.5 ft','5 kg');
-let dog2 = new Dog ('pitbull','4 ft','7 kg');
+let person1 = new person ('prashant','21');
+let person2 = new person ('himanshu','22');
 
+document.write(person1.name)
 // displayig property
-document.write(dog1.breed);
-document.write(dog2.weight);
+person1.display();
