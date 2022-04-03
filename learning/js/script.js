@@ -1,5 +1,12 @@
 "use strict";
-let no = [1,2,3,4,5,6];
-let even_no = no.filter(i=>i%2==0);
 
-even_no.forEach(i=>document.write(i+" "));
+function calculateSum(a,b,...args) {
+    let sum=a+b;
+    args.forEach(i=>sum+=i);
+    return sum;
+}
+
+let s = calculateSum(3,5,7,9);
+document.write(s+" ");
+s=calculateSum(1,2,1,2,1515,2626,5185,4849,1561616,16511,848);
+document.write(s+" ");
