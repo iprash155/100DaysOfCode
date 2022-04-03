@@ -1,11 +1,5 @@
 "use strict";
-let subject = new Array("maths","operating systems","DBMS");
-document.write(subject[0]);
-subject.push("computer network");
-for(let i of subject){
-    document.write(i+" ")
-}
-subject.pop();      //fetches last element of an array and removes it
-for(let i of subject){
-    document.write(i+" ")
-}
+let no = [1,2,3,4,5,6];
+let even_no = no.filter(i=>i%2==0);
+
+even_no.forEach(i=>document.write(i+" "));
