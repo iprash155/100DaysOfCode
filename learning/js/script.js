@@ -1,12 +1,8 @@
 "use strict";
 
-function calculateSum(a,b,...args) {
-    let sum=a+b;
-    args.forEach(i=>sum+=i);
-    return sum;
-}
+let even = [2,4,6,8];
+let odd = [1,3,5,7];
 
-let s = calculateSum(3,5,7,9);
-document.write(s+" ");
-s=calculateSum(1,2,1,2,1515,2626,5185,4849,1561616,16511,848);
-document.write(s+" ");
+let nos = [...even,...odd];
+
+nos.forEach(i=>document.write(i+" "));
