@@ -1,20 +1,11 @@
 "use strict";
-class person{
-    constructor(person_name,person_age){
-        this.name=person_name;
-        this.age=person_age;
-    }
-    display(){
-        document.write(this.name+" is of age "+this.age);
-    }
+let subject = new Array("maths","operating systems","DBMS");
+document.write(subject[0]);
+subject.push("computer network");
+for(let i of subject){
+    document.write(i+" ")
 }
-
-let person1 = new person('prashant',21);
-
-person1.display();
-
-//for-in loop
-
-for(let property in person1){
-    document.write("<br>"+property + " : "+person1[property]+ "<br>");
+subject.pop();      //fetches last element of an array and removes it
+for(let i of subject){
+    document.write(i+" ")
 }
