@@ -3,4 +3,5 @@
 let el = document.getElementById('abc');
 function contentChange(){
     el.innerHTML='this is clicked ele.';
+    alert('para clicked');
 }
