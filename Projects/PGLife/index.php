@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="city-card-container col-md">
-                    <a href="property_list.php?city=Bangalore">
+                    <a href="property_list.php?city=Bengaluru">
                         <div class="city-card rounded-circle">
                             <img src="img/bangalore.png" class="city-img" />
                         </div>

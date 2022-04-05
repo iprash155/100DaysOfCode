@@ -1,7 +1,7 @@
 <?php
     
     //connecting database
-    require("includes/database_connect.php");
+    require("../includes/database_connect.php");
 
     //storing data filled in form by post method
     $full_name=$_POST['full_name'];
@@ -22,7 +22,7 @@
 
     //checking error in executing query
     if (!$result) {
-        echo "something went wrong"
+        echo "something went wrong";
         exit;
     }
 
@@ -41,7 +41,7 @@
     $result=mysqli_query($conn,$sql);
 
     //checking error in executing query
-    if (mysqli_error) {
+    if (!$result) {
         echo "something went wrong";
         exit;
     }

@@ -2,29 +2,44 @@
     //starting session
     session_start();
     //connecting database
-    require "include/database_connect.php";
+    require "includes/database_connect.php";
 
+    //storing userid from session,if it has
+    $user_id= isset($_SESSION['user_id'])?$_SESSION['user_id']:null;
     //storing city searched on home search
-    $city_name = $_GET['city'];
+    $city_name = $_GET["city"];
 
     // query to retrive all the properties data located in the $city_name
-    $sql = " SELECT * FROM 
-             cities INNER JOIN properties on
-             properties.city_id = cities.id 
-             WHERE cities.name = "$city_name"
-            ";
+    $sql = " SELECT * FROM cities WHERE name = '$city_name'";  
     
     // retriving and storing data
     $result = mysqli_query($conn,$sql);
 
-    if (mysqli_error()) {
+    if (!$result) {
         echo "something went wrong ". mysqli_query();
     }
-
-    //fetching all the rows and storing in $properties as an associative array
-    $properties = mysqli_fetch_all($result,MYSQLI_ASSOC);
-
+    $city = mysqli_fetch_assoc($result);
+    $city_id=$city['id'];
     
+    //query to retrieve detail of properties in city_id
+    $sql_1="SELECT * from properties where city_id = $city_id";
+    $result_1=mysqli_query($conn,$sql_1);
+    if (!$result_1) {
+        echo "somthing went wrong";
+    }
+    //fetching all the rows and storing in $properties as an associative array
+    $properties = mysqli_fetch_all($result_1,MYSQLI_ASSOC);
+    
+    //query to fetch interested users in properties
+    $sql_2="SELECT * from interested_users_properties iup 
+            INNER JOIN properties p on iup.property_id = p.id
+            where p.city_id = $city_id ";
+    $result_2 = mysqli_query($conn,$sql_2);
+    if (!$result_2) {
+        echo "something went wrong";
+    }
+    $interested_users_properties = mysqli_fetch_all($result_2,MYSQLI_ASSOC);
+   
 ?>
 
 <!DOCTYPE html>
@@ -77,12 +92,12 @@
                     </div>
                     <?php 
                         foreach ($properties as $property) {
-                            $property_image = glob("img/properties/" . $property['id'] . "/*");
+                            $property_images = glob("img/properties/" . $property['id'] . "/*");
                             
                         ?>
                         <div class="property-card row">
                             <div class="image-container col-md-4">
-                                <img src=" <?php $property_image[0]?> " />
+                                <img src=" <?= $property_images[0]?> " />
                             </div>
                             <div class="content-container col-md-8">                               
                                 <div class="row no-gutters justify-content-between">
@@ -112,32 +127,32 @@
                                         ?>
                                     </div>
                                     <div class="interested-container">                      
-                                    <i class="far fa-heart"></i>
-                                        <div class="interested-text">
                                         <?php
-                                            require "includes/database_connect.php";
-                                            //sql query to retrive no of users interested in perticular property for showing no of likes on property card in page container
-                                            $sql_1 = " SELECT user_id from 
-                                                        interested_users_properties iup inner join properties p
-                                                        on iup.user_id = properties.id 
-                                                        where iup.property_id = $property['id'] ";
-                                                        
-                                            //retriving and storing data     
-                                            $result_1 = mysqli_query($conn,$sql_1);
+                                            $interested_users_count = 0;
+                                            $is_interested = false;
+                                            foreach ($interested_users_properties as $interested_user_property) {
+                                                if ($interested_user_property['property_id'] == $property['id']) {
+                                                    $interested_users_count++;
 
-                                            if (mysqli_error()) {
-                                                echo "something went wrong ". mysqli_query();
+                                                    if ($interested_user_property['user_id'] == $user_id) {
+                                                        $is_interested = true;
+                                                    }
+                                                }
                                             }
-                                            
-                                            $no_of_users = mysqli_num_row($result_1);
-                                            if ($no_of_users>0) {
-                                                echo $no_of_users?> interested</div>.
+
+                                            if ($is_interested) {
+                                            ?>
+                                                <i class="fas fa-heart"></i>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <i class="far fa-heart"></i>
                                             <?php
                                             }
-                                        ?>
-                                                    
+                                            ?>
+                                            <div class="interested-text"><?= $interested_users_count ?> interested</div>
+                                        </div>
                                     </div>
-                                </div>
                                 <div class="detail-container">
                                     <div class="property-name"><?= $property['name']?></div>
                                     <div class="property-address"><?= $property['address']?></div>
@@ -160,7 +175,6 @@
                                         <div class="rent-unit">per month</div>
                                     </div>
                                     <div class="button-container col-6">
-                                        <?php $_SESSION['property_id']=$property['id'];?>
                                         <a href="property_detail.php?property_id=<?= $property['id'] ?>" class="btn btn-primary">View</a>
                                     </div>
                                 </div>

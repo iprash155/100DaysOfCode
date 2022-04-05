@@ -13,14 +13,14 @@
 
 
     //quety to retrive all the rows matches with same email and password as entered by user
-    $sql="SELECT * from users where email="$email" AND password="$password"";
+    $sql="SELECT * from users where email='$email' AND password='$password'";
 
     //storing all the rows containin same emails and password as entered by user from the user table
     $result=mysqli_query($conn,$sql);   
 
     //checking error in executing query
     if (!$result) {
-        echo "something went wrong"
+        echo "something went wrong";
         exit;
     }
 
@@ -28,8 +28,8 @@
     $row=mysqli_fetch_assoc($result);
 
     //checking if user has signed-up
-    if (count(mysqli_num_row($row)=0) {
-        echo "This email-id is not registered with us";
+    if (!$row) {
+        echo "invalid email or password";
         exit;
     }
     if ($row) {
