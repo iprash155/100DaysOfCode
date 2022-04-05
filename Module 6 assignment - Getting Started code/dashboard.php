@@ -25,7 +25,7 @@ $sql_2 = "SELECT *
             INNER JOIN properties p ON iup.property_id = p.id
             WHERE iup.user_id = $user_id";
 $result_2 = mysqli_query($conn, $sql_2);
-if (!$result_2) { 
+if (!$result_2) {
     echo "Something went wrong!";
     return;
 }
@@ -101,27 +101,27 @@ $interested_properties = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
                         <div class="content-container col-md-8">
                             <div class="row no-gutters justify-content-between">
                                 <?php
-                                    $total_rating = ($property['rating_clean'] + $property['rating_food'] + $property['rating_safety']) / 3;
-                                    $total_rating = round($total_rating, 1);
+                                $total_rating = ($property['rating_clean'] + $property['rating_food'] + $property['rating_safety']) / 3;
+                                $total_rating = round($total_rating, 1);
                                 ?>
                                 <div class="star-container" title="<?= $total_rating ?>">
                                     <?php
-                                        $rating = $total_rating;
-                                        for ($i = 0; $i < 5; $i++) {
-                                            if ($rating >= $i + 0.8) {
-                                        ?>
-                                                <i class="fas fa-star"></i>
-                                            <?php
-                                            } elseif ($rating >= $i + 0.3) {
-                                            ?>
-                                                <i class="fas fa-star-half-alt"></i>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <i class="far fa-star"></i>
+                                    $rating = $total_rating;
+                                    for ($i = 0; $i < 5; $i++) {
+                                        if ($rating >= $i + 0.8) {
+                                    ?>
+                                            <i class="fas fa-star"></i>
                                         <?php
-                                            }
+                                        } elseif ($rating >= $i + 0.3) {
+                                        ?>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <i class="far fa-star"></i>
+                                    <?php
                                         }
+                                    }
                                     ?>
                                 </div>
                                 <div class="interested-container">
@@ -172,6 +172,8 @@ $interested_properties = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
     <?php
     include "includes/footer.php";
     ?>
+
+    <script type="text/javascript" src="js/dashboard.js"></script>
 </body>
 
 </html>
