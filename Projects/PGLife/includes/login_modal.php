@@ -30,6 +30,7 @@
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-block btn-primary">Login</button>
+                        <script type="text/javascript" src="js/common.js"></script>
                     </div>
                 </form>
             </div>

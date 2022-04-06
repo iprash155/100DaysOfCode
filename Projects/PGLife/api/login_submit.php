@@ -20,8 +20,9 @@
 
     //checking error in executing query
     if (!$result) {
-        echo "something went wrong";
-        exit;
+        $response = array("success"=>false , "message"=>"something went wrong");
+        echo json_encode($response);
+        return;
     }
 
     //fetching all the row from $result
@@ -29,14 +30,14 @@
 
     //checking if user has signed-up
     if (!$row) {
-        echo "invalid email or password";
-        exit;
+        $response = array("success"=>false , "message"=>"this email is not registered with us");
+        echo json_encode($response);
+        return;
     }
     if ($row) {
         $_SESSION['user_id']=$row['id'];
         $_SESSION['full_name']=$row['full_name'];
         $_SESSION['email'] = $row['email'];
-        header("location: ../index.php");
     }
     mysqli_close($conn);
 ?>

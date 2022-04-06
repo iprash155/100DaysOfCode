@@ -22,16 +22,18 @@
 
     //checking error in executing query
     if (!$result) {
-        echo "something went wrong";
-        exit;
+        $response = array("success"=>false , "message"=>"something went wrong" );
+        echo json_encode($response);
+        return;
     }
 
     //checking if user is already registered via email
     $row_count=mysqli_num_rows($result);                 //this function returns no of rows in $result
 
     if ($row_count!=0) {
-        echo "This email-id is already registered with us";
-        exit;
+        $response = array("success"=>false, "message"=>"This email-id is already registered with us");
+        echo json_encode($response);
+        return;
     }
 
     //sql query to insert filled data into table
@@ -42,14 +44,13 @@
 
     //checking error in executing query
     if (!$result) {
-        echo "something went wrong";
-        exit;
+        $response = array("success"=>false, "message"=>"something went wrong");
+        echo json_encode($response);
+        return;
     }
 
-    echo "your account has been successfully created";
-?>
-    click <a href="../index.php">here</a> to continue.
-<?php
+    $response = array("success"=>true, "message"=>"your account has been successfully created");
+    echo json_encode($response);
     //closing connection
     mysqli_close($conn);
 ?>
