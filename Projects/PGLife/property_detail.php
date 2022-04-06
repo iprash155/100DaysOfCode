@@ -21,29 +21,29 @@
         return;
     }
     //query to retrive all testimonials for $property_id
-    $sql_2 = "SELECT * from testimonials inner join properties on testimonials.property_id = properties.id where properties.id = $property_id";
+    $sql_1 = "SELECT * from testimonials inner join properties on testimonials.property_id = properties.id where properties.id = $property_id";
+    $result_1 = mysqli_query($conn,$sql_1);
+    if (!$result_1) {
+        echo "something went wrong";
+        return;
+    }
+    //fetchig all the testimonial rows in $testimonial as an associative array
+    $testimonials = mysqli_fetch_all($result_1,MYSQLI_ASSOC);
+
+
+    //query to fetch amenities
+    $sql_2 = "SELECT * from 
+              amenities a inner join properties_amenities pa
+              on pa.amenity_id = a.id 
+              where pa.property_id = $property_id            
+             ";
     $result_2 = mysqli_query($conn,$sql_2);
     if (!$result_2) {
         echo "something went wrong";
         return;
     }
-    //fetchig all the testimonial rows in $testimonial as an associative array
-    $testimonials = mysqli_fetch_all($result_2,MYSQLI_ASSOC);
-
-
-    //query to fetch amenities
-    $sql_3 = "SELECT * from 
-              amenities a inner join properties_amenities pa
-              on pa.amenity_id = a.id 
-              where pa.property_id = $property_id            
-             ";
-    $result_3 = mysqli_query($conn,$sql_3);
-    if (!$result_3) {
-        echo "something went wrong";
-        return;
-    }
     //fetching and storing all the amenities property have in an associative array
-    $amenities = mysqli_fetch_all($result_3,MYSQLI_ASSOC);
+    $amenities = mysqli_fetch_all($result_2,MYSQLI_ASSOC);
     
 
 ?>
@@ -76,16 +76,15 @@
                     <?php 
                         require ("includes/database_connect.php");
                         //query to retrive current city 
-                        $sql_1 = " SELECT cities.name from 
+                        $sql_3 = " SELECT cities.name from 
                                  cities inner join properties on
                                  properties.city_id = cities.id 
-                                 where properties.id = $property['id']
-                                ";
-                        $result_1 = mysqli_query($conn,$sql_1);
-                        if (mysqli_error()) {
+                                 where properties.id = $property_id";
+                        $result_3 = mysqli_query($conn,$sql_3);
+                        if (!$result_3) {
                             echo "something went wrong";
                         } 
-                        $city = mysqli_fetch_assoc($result_1);
+                        $city = mysqli_fetch_assoc($result_3);
                     ?>
                     <a href="property_list.php?city=<?= $city['name'];?>"><?= $city['name']?></a>
                 </li>
@@ -154,22 +153,22 @@
                             <?php
                                 require "includes/database_connect.php";
                                 //sql query to retrive no of users interested in perticular property for showing no of likes on property card in page container
-                                $sql_1 = " SELECT user_id from 
+                                $sql_4 = " SELECT user_id from 
                                             interested_users_properties iup inner join properties p
-                                            on iup.user_id = properties.id 
-                                            where iup.property_id = $property['id'] ";
+                                            on iup.property_id = p.id 
+                                            where iup.property_id = $property_id ";
                                             
                                 //retriving and storing data     
-                                $result_1 = mysqli_query($conn,$sql_1);
+                                $result_4 = mysqli_query($conn,$sql_4);
 
-                                if (mysqli_error()) {
+                                if (!$result_4) {
                                     echo "something went wrong ". mysqli_query();
                                 }
-                                
-                                $no_of_users = mysqli_num_row($result_1);
+                                $users = mysqli_fetch_all($result_4,MYSQLI_ASSOC);
+                                $no_of_users = mysqli_num_rows($result_4);
                                 if ($no_of_users>0) {
-                                    echo $no_of_users;?>
-                        </span> interested
+                                    echo $no_of_users;
+                                }?></span> interested
                     </div>
                 </div>
             </div>
@@ -204,68 +203,73 @@
             <div class="page-container">
                 <h1>Amenities</h1>
                 <div class="row justify-content-between">
-                        <?php 
-                            if ($amenities['type']=="Building") {?>
-                                <div class="col-md-auto">
-                                    <h5>Building</h5>
-                                    <?php foreach ($amenities as $amenity) {?>
-                                    <div class="amenity-container">
-                                        <img src="img/amenities/<?= $amenity['icon']?>.svg">
-                                        <span><?= $amenity['name'] ?> </span>
-                                    </div>
-                                </div>
-                                    <?php
-                                }                            
-                            }
+                    <div class="col-md-auto">
+                        <h5>Building</h5>
+                        <?php
+                        foreach ($amenities as $amenity) {
+                            if ($amenity['type'] == "Building") {
                         ?>
+                                <div class="amenity-container">
+                                    <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
+                                    <span><?= $amenity['name'] ?></span>
+                                </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </div>
 
-                        <?php 
-                            if ($amenities['type']=="Common Area") {?>
-                                <div class="col-md-auto">
-                                    <h5>Common Area</h5>
-                                    <?php foreach ($amenities as $amenity) {?>
-                                    <div class="amenity-container">
-                                        <img src="img/amenities/<?= $amenity['icon']?>.svg">
-                                        <span><?= $amenity['name'] ?> </span>
-                                    </div>
-                                </div>
-                                    <?php
-                                }                            
-                            }
+                    <div class="col-md-auto">
+                        <h5>Common Area</h5>
+                        <?php
+                        foreach ($amenities as $amenity) {
+                            if ($amenity['type'] == "Common Area") {
                         ?>
+                                <div class="amenity-container">
+                                    <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
+                                    <span><?= $amenity['name'] ?></span>
+                                </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </div>
 
-                        <?php 
-                            if ($amenities['type']=="Bedroom") {?>
-                                <div class="col-md-auto">
-                                    <h5>Bedroom</h5>
-                                    <?php foreach ($amenities as $amenity) {?>
-                                    <div class="amenity-container">
-                                        <img src="img/amenities/<?= $amenity['icon']?>.svg">
-                                        <span><?= $amenity['name'] ?> </span>
-                                    </div>
-                                </div>
-                                    <?php
-                                }                            
-                            }
+                    <div class="col-md-auto">
+                        <h5>Bedroom</h5>
+                        <?php
+                        foreach ($amenities as $amenity) {
+                            if ($amenity['type'] == "Bedroom") {
                         ?>
+                                <div class="amenity-container">
+                                    <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
+                                    <span><?= $amenity['name'] ?></span>
+                                </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </div>
 
-                        <?php 
-                            if ($amenities['type']=="Washroom") {?>
-                                <div class="col-md-auto">
-                                    <h5>Washroom</h5>
-                                    <?php foreach ($amenities as $amenity) {?>
-                                    <div class="amenity-container">
-                                        <img src="img/amenities/<?= $amenity['icon']?>.svg">
-                                        <span><?= $amenity['name'] ?> </span>
-                                    </div>
-                                </div>
-                                    <?php
-                                }                            
-                            }
+                    <div class="col-md-auto">
+                        <h5>Washroom</h5>
+                        <?php
+                        foreach ($amenities as $amenity) {
+                            if ($amenity['type'] == "Washroom") {
                         ?>
+                                <div class="amenity-container">
+                                    <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
+                                    <span><?= $amenity['name'] ?></span>
+                                </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <div class="property-about page-container">
             <h1>About the Property</h1>
@@ -287,11 +291,11 @@
                                     $rating = $property['rating_clean'];
                                     for ($i=0; $i <5; $i++) { 
 
-                                    if ($rating >= i+0.8) {?>
+                                    if ($rating >= $i+0.8) {?>
                                         <i class="fas fa-star"></i>
 
                                     <?php } 
-                                    else if ($rating >= i+0.3) {?>
+                                    else if ($rating >= $i+0.3) {?>
 
                                         <i class="fas fa-star-half-alt"></i>
 
@@ -315,11 +319,11 @@
                                         $rating = $property['rating_food'];
                                         for ($i=0; $i <5; $i++) { 
 
-                                        if ($rating >= i+0.8) {?>
+                                        if ($rating >= $i+0.8) {?>
                                             <i class="fas fa-star"></i>
 
                                         <?php } 
-                                        else if ($rating >= i+0.3) {?>
+                                        else if ($rating >= $i+0.3) {?>
 
                                             <i class="fas fa-star-half-alt"></i>
 
@@ -343,11 +347,11 @@
                                         $rating = $property['rating_safety'];
                                         for ($i=0; $i <5; $i++) { 
 
-                                        if ($rating >= i+0.8) {?>
+                                        if ($rating >= $i+0.8) {?>
                                             <i class="fas fa-star"></i>
 
                                         <?php } 
-                                        else if ($rating >= i+0.3) {?>
+                                        else if ($rating >= $i+0.3) {?>
 
                                             <i class="fas fa-star-half-alt"></i>
 
@@ -374,11 +378,11 @@
                                     $rating = $total_rating;
                                     for ($i=0; $i <5; $i++) { 
 
-                                    if ($rating >= i+0.8) {?>
+                                    if ($rating >= $i+0.8) {?>
                                         <i class="fas fa-star"></i>
 
                                     <?php } 
-                                    else if ($rating >= i+0.3) {?>
+                                    else if ($rating >= $i+0.3) {?>
 
                                         <i class="fas fa-star-half-alt"></i>
 
@@ -399,20 +403,22 @@
         <div class="property-testimonials page-container">
             <h1>What people say</h1>
             <?php
-                foreach ($testimonials as $testimonial) {?>
-                <div class="testimonial-block">
-                <div class="testimonial-image-container">
-                    <img class="testimonial-img" src="img/man.png">
-                </div>
-                <div class="testimonial-text">
-                    <i class="fa fa-quote-left" aria-hidden="true"></i>
-                    <p><?php $testimonial['description']?></p>
-                </div>
-                <div class="testimonial-name">- <?php $testimonial['user_name']?></div>
-                  <?php 
-                }
+            foreach ($testimonials as $testimonial) {
             ?>
-        </div>       
+                <div class="testimonial-block">
+                    <div class="testimonial-image-container">
+                        <img class="testimonial-img" src="img/man.png">
+                    </div>
+                    <div class="testimonial-text">
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        <p><?= $testimonial['content'] ?></p>
+                    </div>
+                    <div class="testimonial-name">- <?= $testimonial['user_name'] ?></div>
+                </div>
+            <?php
+            }
+            ?>
+        </div> 
 
         <!--    sign-up modal    -->
         <?php

@@ -14,7 +14,7 @@
     $sql_1 = "SELECT * FROM users where id=$user_id ";
     //storing and retriving row
     $result_1 = mysqli_query($conn,$sql_1);
-    if (mysqli_error()) {
+    if (!$result_1) {
         echo "something went wrong";
     }
     //fetching resulted row in $user associative array where key will be column name
@@ -181,9 +181,8 @@
     <!--    footer  -->
     <?php
         include "includes/footer.php";
+    ?>
 
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 
 </html>
