@@ -5,6 +5,8 @@
 
     //storing property id
     $property_id = $_GET["property_id"];
+    //storing user_id in $user_id from session if it has
+    $user_id=isset($_SESSION['user_id'])?$_SESSION['user_id']:null;
 
     // retriving details from properties table for particular id
     $sql = " SELECT * from properties where id = $property_id";
@@ -151,6 +153,7 @@
                     <div class="interested-text">
                         <span class="interested-user-count">
                             <?php
+                                $is_interested=false;
                                 require "includes/database_connect.php";
                                 //sql query to retrive no of users interested in perticular property for showing no of likes on property card in page container
                                 $sql_4 = " SELECT user_id from 
@@ -164,11 +167,26 @@
                                 if (!$result_4) {
                                     echo "something went wrong ". mysqli_query();
                                 }
+
                                 $users = mysqli_fetch_all($result_4,MYSQLI_ASSOC);
                                 $no_of_users = mysqli_num_rows($result_4);
+                                
+                    /////////////////////// code to be fixed  /////////////////////////////////
+                                foreach ($users as $id) {
+                                    if ($id==$user_id) {?>
+                                        <i class="fas fa-heart"></i>
+                                        <?php
+                                    }else {?>
+                                        <i class="far fa-heart"></i>
+                                        <?php
+                                    }
+                                }
+                                
                                 if ($no_of_users>0) {
                                     echo $no_of_users;
-                                }?></span> interested
+                                }                        
+                            ?>
+                        </span> interested
                     </div>
                 </div>
             </div>

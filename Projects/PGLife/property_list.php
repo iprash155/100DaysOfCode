@@ -19,8 +19,7 @@
         echo "something went wrong ". mysqli_query();
     }
     $city = mysqli_fetch_assoc($result);
-    $city_id=$city['id'];
-    
+    $city_id=$city['id'];    
     //query to retrieve detail of properties in city_id
     $sql_1="SELECT * from properties where city_id = $city_id";
     $result_1=mysqli_query($conn,$sql_1);
@@ -126,31 +125,34 @@
                                             }
                                         ?>
                                     </div>
-                                    <div class="interested-container">                      
-                                        <?php
-                                            $interested_users_count = 0;
-                                            $is_interested = false;
-                                            foreach ($interested_users_properties as $interested_user_property) {
-                                                if ($interested_user_property['property_id'] == $property['id']) {
-                                                    $interested_users_count++;
+                                    <div class="interested-container">
+                                        <i class="is-interested-image far fa-heart"></i>
+                                        <div class="interested-text">
+                                            <span class="interested-user-count">                      
+                                            <?php
+                                                $interested_users_count = 0;
+                                                $is_interested = false;
+                                                foreach ($interested_users_properties as $interested_user_property) {
+                                                    if ($interested_user_property['property_id'] == $property['id']) {
+                                                        $interested_users_count++;
 
-                                                    if ($interested_user_property['user_id'] == $user_id) {
-                                                        $is_interested = true;
+                                                        if ($interested_user_property['user_id'] == $user_id) {
+                                                            $is_interested = true;
+                                                        }
                                                     }
                                                 }
-                                            }
 
-                                            if ($is_interested) {
+                                                if ($is_interested) {
+                                                ?>
+                                                    <i class="fas fa-heart"></i>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <i class="far fa-heart"></i>
+                                                <?php
+                                                }
                                             ?>
-                                                <i class="fas fa-heart"></i>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <i class="far fa-heart"></i>
-                                            <?php
-                                            }
-                                            ?>
-                                            <div class="interested-text"><?= $interested_users_count ?> interested</div>
+                                            <?= $interested_users_count ?></span> interested
                                         </div>
                                     </div>
                                 <div class="detail-container">
