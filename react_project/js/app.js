@@ -1,34 +1,23 @@
-class Box extends React.Component{
+class Heading extends React.Component{
+            // functionallity to the element
+    state={color:'black'}; // state
+
+    changeColor(changedColor){
+        this.setState({color:changedColor})  // changing state 
+    };
+            // returning an ele
     render(){
         return(
-            <div className='box'>
-                <h1>{this.props.heading}heading</h1>
-                <p>this is para using class component</p>
+            <div className = 'heading'>
+                <h1 className={this.state.color}> this is heading </h1>
+                <button onClick = {()=>this.changeColor('red')}> Red </button>
             </div>
         );
     }
-};
-
-
-const App =()=> (
-        <div className="row">
-            <div className="column">
-                <Box heading="first"/>
-            </div>
-            <div className="column">
-                <Box heading="second"/>
-            </div>
-            <div className="column">
-                <Box heading="third"/>
-            </div>
-            <div className="column">
-                <Box heading="forth"/>
-            </div>
-        </div>
-    );
-
+}
 
 ReactDOM.render(
-    <App />,
+    <Heading/>,
     document.getElementById('react-container')
 );
+
