@@ -11,6 +11,40 @@ const Box = (props)=>{
     );
 }
 
+const Stats = (props)=>{
+    let boxes = props.boxes;
+    
+    let black_count=0,blue_count=0,red_count=0,green_count=0,yellow_count=0;
+    
+    boxes.forEach(box => {
+        if (box.color=="black") {
+            black_count++;
+        }
+        else if (box.color=="red") {
+            red_count++;
+        }
+        else if (box.color=="green") {
+            green_count++;
+        }    
+        else if (box.color=="blue") {
+            blue_count++;
+        }
+        else if (box.color=="yellow") {
+            yellow_count++;
+        }
+    });
+
+    return(
+        <div > <span><b>Total heading color count</b></span>
+            <div>black : {black_count}</div>
+            <div>blue  : {blue_count}</div>
+            <div>red   : {red_count}</div>
+            <div>yellow: {yellow_count}</div>
+            <div>green : {green_count}</div>
+        </div>
+    );
+}
+
 class App extends React.Component{
     state = {
         boxes:[
@@ -61,17 +95,22 @@ class App extends React.Component{
     render(){
         return(
             <div className="row">
-                    {this.state.boxes.map(box =>
-                        <div className="col">
-                        <Box 
-                            id = {box.id}
-                            heading = {box.heading}
-                            color = {box.color}
-                            changeColor={this.changeColor.bind(this)}
-                        />
-                        </div>
-                    )
-                    }  
+                <div className="row">
+                        {this.state.boxes.map(box =>
+                            <div className="col">
+                            <Box 
+                                id = {box.id}
+                                heading = {box.heading}
+                                color = {box.color}
+                                changeColor={this.changeColor.bind(this)}
+                            />
+                            </div>
+                        )
+                        }  
+                </div>
+                <div className="row">         
+                            <Stats boxes={this.state.boxes}/>
+                </div>
             </div>
         );
     }
