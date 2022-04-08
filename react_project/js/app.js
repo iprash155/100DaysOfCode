@@ -1,52 +1,83 @@
-class Box extends React.Component{
-            // functionallity to the element
-    state={color:'black'}; // state
+const Box = (props)=>{
+    return(
+        <div className = 'box'>
+            <h1 className= {props.color} >{props.heading} heading </h1>
+            <p> this is box which is application state</p>
+            <button onClick = {()=>props.changeColor(props.id,'red')}>Red</button>
+            <button onClick = {()=>props.changeColor(props.id,'green')}>Green</button>
+            <button onClick = {()=>props.changeColor(props.id,'blue')}>Blue</button>
+            <button onClick = {()=>props.changeColor(props.id,'yellow')}>Yellow</button>
+        </div>
+    );
+}
 
-    changeColor(changedColor){
-        this.setState({color:changedColor})  // changing state 
+class App extends React.Component{
+    state = {
+        boxes:[
+            {   
+                id : 1,
+                heading : "first",
+                color : "black"
+            },
+            {
+                id : 2,
+                heading : "second",
+                color : "black"
+            },
+            {
+                id : 3,
+                heading : "third",
+                color : "black"
+            },
+            {
+                id : 4,
+                heading : "fourth",
+                color : "black"
+            },
+            {
+                id : 5,
+                heading : "fifth",
+                color : "black"
+            },
+            {
+                id : 6,
+                heading : "sixth",
+                color : "black"
+            },
+            {
+                id : 7,
+                heading : "seventh",
+                color : "black"
+            },
+        ]
     };
-            // returning an ele
+
+    changeColor(id,changedcolor){
+        let boxes = this.state.boxes;
+        boxes[id-1].color=changedcolor;
+        this.setState({boxes:boxes});
+    }
+
     render(){
         return(
-            <div className = 'box'>
-                <h1 className={this.state.color}> {this.props.heading} heading </h1>
-                <p>this is para</p>
-                <button onClick = {()=>this.changeColor('red')}> Red </button>
-                <button onClick = {()=>this.changeColor('green')}> Green </button>
-                <button onClick = {()=>this.changeColor('blue')}> BLue </button>
-                <button onClick = {()=>this.changeColor('yellow')}> Yellow </button>
+            <div className="row">
+                    {this.state.boxes.map(box =>
+                        <div className="col">
+                        <Box 
+                            id = {box.id}
+                            heading = {box.heading}
+                            color = {box.color}
+                            changeColor={this.changeColor.bind(this)}
+                        />
+                        </div>
+                    )
+                    }  
             </div>
         );
     }
 }
 
-const App = ()=>{
-    return(
-        <div className="row">
-            <div className="col">
-                <Box heading="first"/>
-            </div>
-            <div className="col">
-                <Box heading="second"/>
-            </div>
-            <div className="col">
-                <Box heading="third"/>
-            </div>
-            <div className="col">
-                <Box heading="forth"/>
-            </div>
-            <div className="col">
-                <Box heading="fifth"/>
-            </div>
-            <div className="col">
-                <Box heading="sixth"/>
-            </div>
-        </div>
-    );
-}
-
 ReactDOM.render(
-    <App/>,
+    <App />,
     document.getElementById('react-container')
 );
-
