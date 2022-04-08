@@ -1,9 +1,13 @@
-const Box = (props)=>(
-        <div className='box'>
-            <h1 id='abc'>{props.heading} heading</h1>
-            <p>this is paragraph using components</p>
-        </div>
-    );
+class Box extends React.Component{
+    render(){
+        return(
+            <div className='box'>
+                <h1>{this.props.heading}heading</h1>
+                <p>this is para using class component</p>
+            </div>
+        );
+    }
+};
 
 
 const App =()=> (
@@ -13,6 +17,12 @@ const App =()=> (
             </div>
             <div className="column">
                 <Box heading="second"/>
+            </div>
+            <div className="column">
+                <Box heading="third"/>
+            </div>
+            <div className="column">
+                <Box heading="forth"/>
             </div>
         </div>
     );
