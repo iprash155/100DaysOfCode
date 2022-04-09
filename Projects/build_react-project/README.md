@@ -11,5 +11,6 @@
 * the second component is stats at the bottom left corner of the web page.it shows how many color buttons are pressed at the time.
 * had a fun 😍 building this small project.
 * this small project is part of #100DaysOfCode challenge. i tweet about it everyday 
-* consider checking out my twitter handle: [iprash155](https://twitter.com/iprash155) 
 * any suggestion are always welcome
+* consider checking out my twitter handle: [iprash155](https://twitter.com/iprash155) 
+
