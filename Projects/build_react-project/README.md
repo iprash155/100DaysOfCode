@@ -12,3 +12,4 @@
 * had a fun 😍 building this small project.
 * this small project is part of #100DaysOfCode challenge. i tweet about it everyday 
 * consider checking out my twitter handle: [iprash155](https://twitter.com/iprash155) 
+* any suggestion are always welcome
