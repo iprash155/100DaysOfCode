@@ -43,8 +43,8 @@ window.addEventListener("load", function () {
 });
 
 var signup_success = function (event) {
-    if (xhr.readystate===XMLHttpRequest.DONE) {
-        if(xhr.status===200){
+    if (XHR.readystate===XMLHttpRequest.DONE) {
+        if(XHR.status===200){
             document.getElementById("loading").style.display = 'none';
             var response = JSON.parse(event.target.responseText);
             if (response.success) {
@@ -62,12 +62,12 @@ var signup_success = function (event) {
 };
 
 var login_success = function (event) {
-    if (xhr.readystate===XMLHttpRequest.DONE) {
-        if(xhr.status===200){
+    if (XHR.readystate===XMLHttpRequest.DONE) {
+        if(XHR.status===200){
             document.getElementById("loading").style.display = 'none';
             var response = JSON.parse(event.target.responseText);
             if (response.success) {
-                window.location.href = "index.php";
+                location.reload();
             } else {
                 alert(response.message);
             }
