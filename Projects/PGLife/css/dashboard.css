@@ -120,3 +120,12 @@
     width: 140px;
     float: right;
 }
+/* No Property */
+.no-property-container {
+    margin: 96px auto 144px;
+}
+
+.no-property-container p {
+    font-size: 24px;
+    text-align: center;
+}

@@ -96,9 +96,7 @@
     </div>
 
     <!--    interested properties page container  -->
-    <?php
-        if (count($interested_properties) > 0) {
-        ?>
+
         <div class="my-interested-properties">
             <div class="page-container">
                 <h1>My Interested Properties</h1>
@@ -174,8 +172,14 @@
                 ?>
             </div>
         </div>
-        <?php 
-        }   
+    <?php    
+    if (count($interested_properties) == 0) {
+    ?>
+        <div class="no-property-container">
+            <p>No PG to list</p>
+        </div>
+    <?php
+    }
     ?>
 
     <!--    footer  -->
