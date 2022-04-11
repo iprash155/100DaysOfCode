@@ -11,7 +11,7 @@
             <ul class="navbar-nav">
                 <?php
                     //Check if user is logged-in or not
-                if (!isset($_SESSION["user_id"])) {
+                if (!isset($_SESSION['user_id'])) {
                 ?>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#signup-modal">
@@ -29,7 +29,7 @@
                 } else {
                     ?>
                     <div class='nav-name'>
-                        Hi, <?php echo $_SESSION["full_name"] ?>
+                        Hi, <?php echo $_SESSION['full_name'] ?>
                     </div>
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">

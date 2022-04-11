@@ -1,52 +1,48 @@
 <?php
-    session_start();
+session_start();
     //database connection
     require "../includes/database_connect.php";
     //checking if user is logged-in
-    if ((!isset($_SESSION('user_id'))) {
-        echo "user is not logged-in";
+    if (!isset($_SESSION['user_id'])) {
+        echo json_encode(array("success" => false, "is_logged_in" => false));
         return;
     }
     //assigning important data
-    $user_id=$_SESSION['user_id'];
-    $property_id=$_GET['property_id'];
-    // selecting row
-    $sql = "SELECT * from interested_users_properties where user_id=$user_id and property_id=$property_id";
-    $reult=mysqli_query($conn,$sql);
-    if (!$result) {
-        echo "something went wrong";
+    $user_id = $_SESSION['user_id'];
+    $property_id = $_GET["property_id"];
+
+    $sql_1 = "SELECT * FROM interested_users_properties WHERE user_id = $user_id AND property_id = $property_id";
+    $result_1 = mysqli_query($conn, $sql_1);
+    if (!$result_1) {
+        echo json_encode(array("success" => false, "message" => "Something went wrong"));
         return;
     }
-    
-    if (mysqli_num_rows($result>0)) {  // case of property is liked already 
+
+    if (mysqli_num_rows($result_1) > 0) {// case of property is liked already 
         // deleting row from database as user disliked property
-        $sql_1= "DELETE from interest_users_properties where user_id=$user_id and property_id=$property_id";
-        $result_1=mysqli_query($conn,$sql_1);
-        if (!$result_1) {
-            echo "something went wrong";
+        $sql_2 = "DELETE FROM interested_users_properties WHERE user_id = $user_id AND property_id = $property_id";
+        $result_2 = mysqli_query($conn, $sql_2);
+        if (!$result_2) {
+            echo json_encode(array("success" => false, "message" => "Something went wrong"));
+            return;
+        } else {
+            echo json_encode(array("success" => true, "is_interested" => false, "property_id" => $property_id));
             return;
         }
-        else{
-            echo "property disliked";
-            return;
-        }
-    }
+    } 
     else { // case of property is not liked
         // inserting row as user liked property
         $sql_3 = "INSERT INTO interested_users_properties (user_id, property_id) VALUES ('$user_id', '$property_id')";
-        $result_2=mysqli_query($conn,$sql_2);
-        if (!$result_2) {
-            echo "something went wrong";
+        $result_3 = mysqli_query($conn, $sql_3);
+        if (!$result_3) {
+            echo json_encode(array("success" => false, "message" => "Something went wrong"));
             return;
-        }
+        } 
         else {
-            echo "property liked";
+            echo json_encode(array("success" => true, "is_interested" => true, "property_id" => $property_id));
             return;
         }
-        
     }
-    
-
 mysqli_close($conn);
 
 ?>

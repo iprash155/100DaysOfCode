@@ -43,39 +43,26 @@ window.addEventListener("load", function () {
 });
 
 var signup_success = function (event) {
-    if (XHR.readystate===XMLHttpRequest.DONE) {
-        if(XHR.status===200){
-            document.getElementById("loading").style.display = 'none';
-            var response = JSON.parse(event.target.responseText);
-            if (response.success) {
-                alert(response.message);
-                window.location.href = "index.php";
-            } else {
-                alert(response.message);
-            }
-        }
-        else {
-            alert("status is not 200")
-        }
-    } 
+    document.getElementById("loading").style.display = 'none';
 
+    var response = JSON.parse(event.target.responseText);
+    if (response.success) {
+        alert(response.message);
+        window.location.href = "index.php";
+    } else {
+        alert(response.message);
+    }
 };
 
 var login_success = function (event) {
-    if (XHR.readystate===XMLHttpRequest.DONE) {
-        if(XHR.status===200){
-            document.getElementById("loading").style.display = 'none';
-            var response = JSON.parse(event.target.responseText);
-            if (response.success) {
-                location.reload();
-            } else {
-                alert(response.message);
-            }
-        }
-        else {
-            alert("status is not 200")
-        }
-    } 
+    document.getElementById("loading").style.display = 'none';
+    
+    var response = JSON.parse(event.target.responseText);
+    if (response.success) {
+        location.reload();
+    } else {
+        alert(response.message);
+    }
 };
 
 var on_error = function (event) {

@@ -149,11 +149,10 @@
                     ?>
                 </div>
                 <div class="interested-container">
-                    <i class="is-interested-image far fa-heart"></i>
-                    <div class="interested-text">
-                        <span class="interested-user-count">
+                
                             <?php
                                 $is_interested=false;
+                                $interested_users_count=0;
                                 require "includes/database_connect.php";
                                 //sql query to retrive no of users interested in perticular property for showing no of likes on property card in page container
                                 $sql_4 = " SELECT user_id from 
@@ -169,25 +168,26 @@
                                 }
 
                                 $users = mysqli_fetch_all($result_4,MYSQLI_ASSOC);
-                                $no_of_users = mysqli_num_rows($result_4);
+                                $interested_users_count = mysqli_num_rows($result_4);
                                 
-                    /////////////////////// code to be fixed  /////////////////////////////////
                                 foreach ($users as $id) {
-                                    if ($id==$user_id) {?>
-                                        <i class="fas fa-heart"></i>
-                                        <?php
-                                    }else {?>
-                                        <i class="far fa-heart"></i>
-                                        <?php
+                                    if ($id==$user_id) {
+                                        $is_interested=true;    
                                     }
                                 }
                                 
-                                if ($no_of_users>0) {
-                                    echo $no_of_users;
-                                }                        
+                                if ($is_interested) {?>
+                                    <i class="is-interested-image fas fa-heart"></i>
+                                    <?php
+                                }
+                                else { ?>
+                                    <i class="is-interested-image far fa-heart"></i>
+                                    <?php
+                                }                       
                             ?>
-                        </span> interested
-                    </div>
+                        <div class="interested-text">
+                            <span class="interested-user-count"><?= $interested_users_count ?></span> interested
+                        </div>
                 </div>
             </div>
             <div class="detail-container">

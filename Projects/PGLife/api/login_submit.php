@@ -24,20 +24,21 @@
         echo json_encode($response);
         return;
     }
-
-    //fetching all the row from $result
-    $row=mysqli_fetch_assoc($result);
-
-    //checking if user has signed-up
-    if (!$row) {
-        $response = array("success"=>false , "message"=>"this email is not registered with us");
+    if (mysqli_num_rows($result)==0) {
+        $response = array("success"=>false , "message"=>"invalid email or password");
         echo json_encode($response);
         return;
     }
-    if ($row) {
-        $_SESSION['user_id']=$row['id'];
-        $_SESSION['full_name']=$row['full_name'];
-        $_SESSION['email'] = $row['email'];
-    }
+
+    //fetching the row from $result
+    $user=mysqli_fetch_assoc($result);
+
+        $_SESSION['user_id']=$user['id'];
+        $_SESSION['full_name']=$user['full_name'];
+        $_SESSION['email'] = $user['email'];
+
+        $response = array("success"=>true);
+        echo json_encode($response);
+
     mysqli_close($conn);
 ?>
