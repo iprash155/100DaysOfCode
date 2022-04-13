@@ -72,128 +72,128 @@
 
         <!--    page container   -->
         <div class="page-container">
-        <div class="filter-bar row justify-content-around">
-            <div class="col-auto" data-toggle="modal" data-target="#filter-modal">
-                <img src="img/filter.png" alt="filter" />
-                <span>Filter</span>
-            </div>
-            <div class="col-auto">
-                <img src="img/desc.png" alt="sort-desc" />
-                <span>Highest rent first</span>
-            </div>
-            <div class="col-auto">
-                <img src="img/asc.png" alt="sort-asc" />
-                <span>Lowest rent first</span>
-            </div>
-        </div>
-
-        <?php
-        foreach ($properties as $property) {
-            $property_images = glob("img/properties/" . $property['id'] . "/*");
-        ?>
-            <div class="property-card property-id-<?= $property['id'] ?> row">
-                <div class="image-container col-md-4">
-                    <img src="<?= $property_images[0] ?>" />
+            <div class="filter-bar row justify-content-around">
+                <div class="col-auto" data-toggle="modal" data-target="#filter-modal">
+                    <img src="img/filter.png" alt="filter" />
+                    <span>Filter</span>
                 </div>
-                <div class="content-container col-md-8">
-                    <div class="row no-gutters justify-content-between">
-                        <?php
-                        $total_rating = ($property['rating_clean'] + $property['rating_food'] + $property['rating_safety']) / 3;
-                        $total_rating = round($total_rating, 1);
-                        ?>
-                        <div class="star-container" title="<?= $total_rating ?>">
+                <div class="col-auto">
+                    <img src="img/desc.png" alt="sort-desc" />
+                    <span>Highest rent first</span>
+                </div>
+                <div class="col-auto">
+                    <img src="img/asc.png" alt="sort-asc" />
+                    <span>Lowest rent first</span>
+                </div>
+            </div>
+
+            <?php
+            foreach ($properties as $property) {
+                $property_images = glob("img/properties/" . $property['id'] . "/*");
+            ?>
+                <div class="property-card property-id-<?= $property['id'] ?> row">
+                    <div class="image-container col-md-4">
+                        <img src="<?= $property_images[0] ?>" />
+                    </div>
+                    <div class="content-container col-md-8">
+                        <div class="row no-gutters justify-content-between">
                             <?php
-                            $rating = $total_rating;
-                            for ($i = 0; $i < 5; $i++) {
-                                if ($rating >= $i + 0.8) {
+                            $total_rating = ($property['rating_clean'] + $property['rating_food'] + $property['rating_safety']) / 3;
+                            $total_rating = round($total_rating, 1);
                             ?>
-                                    <i class="fas fa-star"></i>
+                            <div class="star-container" title="<?= $total_rating ?>">
                                 <?php
-                                } elseif ($rating >= $i + 0.3) {
+                                $rating = $total_rating;
+                                for ($i = 0; $i < 5; $i++) {
+                                    if ($rating >= $i + 0.8) {
                                 ?>
-                                    <i class="fas fa-star-half-alt"></i>
+                                        <i class="fas fa-star"></i>
+                                    <?php
+                                    } elseif ($rating >= $i + 0.3) {
+                                    ?>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <i class="far fa-star"></i>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <div class="interested-container">
+                                <?php
+                                $interested_users_count = 0;
+                                $is_interested = false;
+                                foreach ($interested_users_properties as $interested_user_property) {
+                                    if ($interested_user_property['property_id'] == $property['id']) {
+                                        $interested_users_count++;
+
+                                        if ($interested_user_property['user_id'] == $user_id) {
+                                            $is_interested = true;
+                                        }
+                                    }
+                                }
+
+                                if ($is_interested) {
+                                ?>
+                                    <i class="is-interested-image fas fa-heart" property_id="<?= $property['id'] ?>"></i>
                                 <?php
                                 } else {
                                 ?>
-                                    <i class="far fa-star"></i>
-                            <?php
+                                    <i class="is-interested-image far fa-heart" property_id="<?= $property['id'] ?>"></i>
+                                <?php
                                 }
-                            }
-                            ?>
+                                ?>
+                                <div class="interested-text">
+                                    <span class="interested-user-count"><?= $interested_users_count ?></span> interested
+                                </div>
+                            </div>
                         </div>
-                        <div class="interested-container">
-                            <?php
-                            $interested_users_count = 0;
-                            $is_interested = false;
-                            foreach ($interested_users_properties as $interested_user_property) {
-                                if ($interested_user_property['property_id'] == $property['id']) {
-                                    $interested_users_count++;
-
-                                    if ($interested_user_property['user_id'] == $user_id) {
-                                        $is_interested = true;
-                                    }
+                        <div class="detail-container">
+                            <div class="property-name"><?= $property['name'] ?></div>
+                            <div class="property-address"><?= $property['address'] ?></div>
+                            <div class="property-gender">
+                                <?php
+                                if ($property['gender'] == "male") {
+                                ?>
+                                    <img src="img/male.png" />
+                                <?php
+                                } elseif ($property['gender'] == "female") {
+                                ?>
+                                    <img src="img/female.png" />
+                                <?php
+                                } else {
+                                ?>
+                                    <img src="img/unisex.png" />
+                                <?php
                                 }
-                            }
-
-                            if ($is_interested) {
-                            ?>
-                                <i class="is-interested-image fas fa-heart" property_id="<?= $property['id'] ?>"></i>
-                            <?php
-                            } else {
-                            ?>
-                                <i class="is-interested-image far fa-heart" property_id="<?= $property['id'] ?>"></i>
-                            <?php
-                            }
-                            ?>
-                            <div class="interested-text">
-                                <span class="interested-user-count"><?= $interested_users_count ?></span> interested
+                                ?>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="rent-container col-6">
+                                <div class="rent">₹ <?= number_format($property['rent']) ?>/-</div>
+                                <div class="rent-unit">per month</div>
+                            </div>
+                            <div class="button-container col-6">
+                                <a href="property_detail.php?property_id=<?= $property['id'] ?>" class="btn btn-primary">View</a>
                             </div>
                         </div>
                     </div>
-                    <div class="detail-container">
-                        <div class="property-name"><?= $property['name'] ?></div>
-                        <div class="property-address"><?= $property['address'] ?></div>
-                        <div class="property-gender">
-                            <?php
-                            if ($property['gender'] == "male") {
-                            ?>
-                                <img src="img/male.png" />
-                            <?php
-                            } elseif ($property['gender'] == "female") {
-                            ?>
-                                <img src="img/female.png" />
-                            <?php
-                            } else {
-                            ?>
-                                <img src="img/unisex.png" />
-                            <?php
-                            }
-                            ?>
-                        </div>
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="rent-container col-6">
-                            <div class="rent">₹ <?= number_format($property['rent']) ?>/-</div>
-                            <div class="rent-unit">per month</div>
-                        </div>
-                        <div class="button-container col-6">
-                            <a href="property_detail.php?property_id=<?= $property['id'] ?>" class="btn btn-primary">View</a>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        <?php
-        }
+            <?php
+            }
 
-        if (count($properties) == 0) {
-        ?>
-            <div class="no-property-container">
-                <p>No PG to list</p>
-            </div>
-        <?php
-        }
-        ?>
-    </div>
+            if (count($properties) == 0) {
+            ?>
+                <div class="no-property-container">
+                    <p>No PG to list</p>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
 
         <!--    filter modal      -->
         <div class="modal fade" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="filter-heading" aria-hidden="true">
