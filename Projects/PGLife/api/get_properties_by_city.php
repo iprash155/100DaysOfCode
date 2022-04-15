@@ -1,6 +1,7 @@
 <?php
     //starting session
     session_start();
+    // header allows to make ajax request accross website as we are fetching data from this file to react-app folder
     header("Access-Control-Allow-Origin: *");
     header('Content-Type: application/json');
     //connecting database
